@@ -16,7 +16,6 @@ defmodule Librecov.FileController do
 
     Auth.with_auth_data(file.job.build.project, auth, fn auth_data ->
       {:ok, file_content} = Files.file(auth_data, file.name, file.job.build.commit_sha)
-      IO.inspect(file_content)
       render(conn, "show.html", file: file, file_json: file_json, content: file_content)
     end)
   end
