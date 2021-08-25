@@ -64,7 +64,8 @@
     "typescript": "^4.3.5"
   },
   "lint-staged": {
-    "*.{js,css,md}": "prettier --write",
+    "*.{css,md}": "prettier --write",
+    "*.{js,ts}": ["prettier --write", "ts-standard --fix"],
     "*.{ex,exs, eex}": "mix format"
   },
   "config": {

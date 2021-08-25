@@ -1,5 +1,5 @@
-const highlight = require("highlight.js");
+const highlight = require('highlight.js')
 
 module.exports = function (code) {
-  return highlight.highlightAuto(code).value;
-};
+  return highlight.highlightAuto(code).value
+}
