@@ -49,6 +49,7 @@ defmodule Librecov.Web do
       import Ecto.Query, only: [from: 1, from: 2]
 
       alias Librecov.Router.Helpers, as: Routes
+      alias Librecov.Authentication
     end
   end
 

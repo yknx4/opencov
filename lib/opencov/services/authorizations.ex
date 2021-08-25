@@ -9,6 +9,10 @@ defmodule Librecov.Services.Authorizations do
     resource(Authorization)
   end
 
+  def first_for_provider(%{authorizations: authorizations}, provider) do
+    authorizations |> Enum.find(&(&1.provider == provider))
+  end
+
   def ensure_fresh(%Authorization{expires_at: expires_at} = auth) do
     now = (Timex.now() |> Timex.to_unix()) + 60
 

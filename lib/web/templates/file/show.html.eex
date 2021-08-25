@@ -1,3 +1,6 @@
+<script>
+  window.file = <%= raw @file_json %>;
+</script>
 <div class="content">
 <h2 class="row breadcrumb">
   <span class="media-body">
@@ -21,8 +24,10 @@
   </span>
 </h2>
 </div>
-<script>
-  window.file = <%= raw @file_json %>;
-</script>
-
-<file-coverage></file-coverage>
+<div class="content">
+  <div class="block col-8">
+   <div class="block-content">
+      <file-coverage></file-coverage>
+    </div>
+  </div>
+</div>
