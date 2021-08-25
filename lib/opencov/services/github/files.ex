@@ -2,7 +2,6 @@ defmodule Librecov.Services.Github.Files do
   require Logger
 
   alias ExOctocat.Connection
-  alias ExOctocat.Api.Repos
   alias Librecov.Services.Github.AuthData
 
   def file(%AuthData{token: token, owner: owner, repo: repo}, path, ref) do
