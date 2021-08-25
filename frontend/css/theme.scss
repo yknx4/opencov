@@ -4,3 +4,13 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts" !default;
 @import "~@fortawesome/fontawesome-free/scss/solid";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 @import "~@fortawesome/fontawesome-free/scss/v4-shims";
+
+.file-table {
+  line-height: 1.1em;
+  pre {
+    overflow: hidden;
+  }
+  .bg-warning {
+    background-color: #FFB6C1 !important;
+  }
+}

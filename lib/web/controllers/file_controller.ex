@@ -5,6 +5,7 @@ defmodule Librecov.FileController do
   alias Librecov.Services.Authorizations
   alias Librecov.Services.Github.Auth
   alias Librecov.Services.Github.Files
+  alias Librecov.Parser.Highlight
 
   def show(conn, %{"id" => id}) do
     user = Authentication.get_current_account(conn)
@@ -16,18 +17,26 @@ defmodule Librecov.FileController do
     Auth.with_auth_data(file.job.build.project, auth, fn auth_data ->
       {:ok, file_content} = Files.file(auth_data, file.name, file.job.build.commit_sha)
 
-      file_json =
+      raw_content =
+        file_content.content
+        |> String.split("\n")
+        |> Enum.map(&Base.decode64!/1)
+        |> Enum.join("")
+
+      file =
         file
         |> Map.put(
           "source",
-          file_content.content
-          |> String.split("\n")
-          |> Enum.map(&Base.decode64!/1)
-          |> Enum.join("")
+          raw_content
         )
+
+      file_json =
+        file
         |> Jason.encode!()
 
-      render(conn, "show.html", file: file, file_json: file_json, content: file_content)
+      content_to_render = Highlight.parse(file)
+
+      render(conn, "show.html", file: file, file_json: file_json, content: content_to_render)
     end)
   end
 end

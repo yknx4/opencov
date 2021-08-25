@@ -13,17 +13,23 @@ defmodule Librecov.Services.Authorizations do
     authorizations |> Enum.find(&(&1.provider == provider))
   end
 
-  def ensure_fresh(%Authorization{expires_at: expires_at} = auth) do
+  def ensure_fresh(%Authorization{expires_at: expires_at, token: token} = auth) do
     now = (Timex.now() |> Timex.to_unix()) + 60
 
-    if now < expires_at do
+    if !is_nil(token) && now < expires_at do
       {:ok, auth}
     else
       with {:ok, %{token: new_token}} <-
              Auth.github_client()
              |> Map.put(:token, %{refresh_token: auth.refresh_token})
              |> OAuth2.Client.refresh_token() do
-        auth |> Authorization.changeset(new_token |> Map.from_struct()) |> Repo.update()
+        auth
+        |> Authorization.changeset(
+          new_token
+          |> Map.from_struct()
+          |> Map.merge(:token, new_token.access_token)
+        )
+        |> Repo.update()
       end
     end
   end

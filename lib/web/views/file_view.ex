@@ -15,6 +15,16 @@ defmodule Librecov.FileView do
     }
   end
 
+  def class_for_coverage(nil), do: ""
+  def class_for_coverage(0), do: "bg-warning"
+  def class_for_coverage(_), do: ""
+
+  def content_for_coverage(nil), do: ""
+  def content_for_coverage(0), do: "<span class=\"badge rounded-pill bg-danger\">0</span>"
+
+  def content_for_coverage(coverage),
+    do: "<span class=\"badge rounded-pill bg-success\">#{coverage}</span>"
+
   def short_name(name) do
     if String.length(name) < @max_length do
       name
