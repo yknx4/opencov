@@ -11,11 +11,10 @@ defmodule Librecov.FileController do
     user = Authentication.get_current_account(conn)
     file = Repo.get!(File, id) |> Librecov.Repo.preload(job: [build: :project])
 
-    {:ok, auth} =
-      user |> Authorizations.first_for_provider("github") |> Authorizations.ensure_fresh()
+    auth = user |> Authorizations.first_for_provider("github") |> Authorizations.ensure_fresh!()
 
-    Auth.with_auth_data(file.job.build.project, auth, fn auth_data ->
-      {:ok, file_content} = Files.file(auth_data, file.name, file.job.build.commit_sha)
+    Auth.with_auth_data!(file.job.build.project, auth, fn auth_data ->
+      file_content = Files.file!(auth_data, file.name, file.job.build.commit_sha)
 
       raw_content =
         file_content.content
@@ -36,7 +35,8 @@ defmodule Librecov.FileController do
 
       content_to_render = Highlight.parse(file)
 
-      render(conn, "show.html", file: file, file_json: file_json, content: content_to_render)
+      {:ok,
+       render(conn, "show.html", file: file, file_json: file_json, content: content_to_render)}
     end)
   end
 end

@@ -7,6 +7,15 @@ defmodule Librecov.Authentication do
   alias Librecov.User
   alias Librecov.Repo
 
+  use Unsafe.Generator,
+    docs: false
+
+  import Librecov.Helpers.Happy
+
+  @unsafe [
+    {:resource_from_session, 1, :unwrap}
+  ]
+
   def authenticated?(conn, opts \\ []) do
     __MODULE__.Plug.authenticated?(conn, opts)
   end

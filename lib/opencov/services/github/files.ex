@@ -1,6 +1,15 @@
 defmodule Librecov.Services.Github.Files do
   require Logger
 
+  use Unsafe.Generator,
+    docs: false
+
+  import Librecov.Helpers.Happy
+
+  @unsafe [
+    {:file, 3, :unwrap}
+  ]
+
   alias ExOctocat.Connection
   alias Librecov.Services.Github.AuthData
 

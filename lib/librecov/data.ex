@@ -6,8 +6,9 @@ defmodule Librecov.Data do
   use Unsafe.Generator,
     docs: false
 
-  import Ecto.Query, warn: false
   import Librecov.Helpers.Happy
+
+  import Ecto.Query, warn: false
 
   alias Librecov.Services.Github.Repos
   alias Librecov.Services.Github.AuthData

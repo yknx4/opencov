@@ -8,8 +8,7 @@ defmodule Librecov.RepositoryLive.Show do
 
   @impl true
   def mount(_params, session, socket) do
-    {:ok, user, _} = Authentication.resource_from_session(session)
-    {:ok, assign(socket, user: user)}
+    {:ok, assign(socket, user: Authentication.resource_from_session!(session))}
   end
 
   @impl true
@@ -28,8 +27,10 @@ defmodule Librecov.RepositoryLive.Show do
   end
 
   defp get_repository(user, repo, owner) do
-    {:ok, auth} = user.authorizations |> List.first() |> Authorizations.ensure_fresh()
-    Data.get_repository!(auth, owner, repo)
+    user.authorizations
+    |> List.first()
+    |> Authorizations.ensure_fresh!()
+    |> Data.get_repository!(owner, repo)
   end
 
   defp page_title(:show), do: "Show Repository"

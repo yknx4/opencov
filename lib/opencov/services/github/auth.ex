@@ -6,6 +6,16 @@ defmodule Librecov.Services.Github.Auth do
   alias Librecov.Services.Github.AuthData
   alias Librecov.User.Authorization
 
+  use Unsafe.Generator,
+    docs: false
+
+  import Librecov.Helpers.Happy
+
+  @unsafe [
+    {:with_auth_data, 2, :unwrap},
+    {:with_auth_data, 3, :unwrap}
+  ]
+
   def with_auth_data(nil, _), do: {:error, :nil_input}
 
   def with_auth_data(%Project{} = project, block) do

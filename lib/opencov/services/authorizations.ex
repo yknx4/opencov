@@ -3,6 +3,15 @@ defmodule Librecov.Services.Authorizations do
   alias Librecov.User.Authorization
   alias Librecov.Services.Github.Auth
 
+  use Unsafe.Generator,
+    docs: false
+
+  import Librecov.Helpers.Happy
+
+  @unsafe [
+    {:ensure_fresh, 1, :unwrap}
+  ]
+
   use EctoResource
 
   using_repo(Repo) do
