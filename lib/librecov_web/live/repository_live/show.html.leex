@@ -8,83 +8,166 @@
     return_to: Routes.repository_show_path(@socket, :show, @repository) %>
 <% end %>
 
+<div class="bg-image">
+  <div class="bg-primary-dark-op">
+    <div class="content content-full">
+      <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mt-5 mb-2 text-center text-sm-start">
+        <div class="flex-grow-1">
+          <h1 class="fw-semibold text-white mb-0"><%= @repository.full_name %></h1>
+          <h2 class="h4 fw-normal text-white-75 mb-0">Code Coverage Report</h2>
+        </div>
+        <div class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3">
+          <span class="d-inline-block btn-group">
+            <div class="btn-group">
+              <button class="btn btn-primary px-4 py-2 dropdown-toggle" type="button" id="dropdownMenuClickable" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
+                <i class="fas fa-key me-1 opacity-50"></i> Show Token
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickable">
+                  <li><h6 class="dropdown-header">Token</h6></li>
+                <li><pre><code><span class="dropdown-item"><%= @project.token %></span></pre></code></li>
+              </ul>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-primary px-4 py-2 dropdown-toggle" type="button" id="dropdownMenuClickable2" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
+                <i class="far fa-image me-1 opacity-50"></i> Get Badge
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickable2">
+                  <li><img class="dropdown-header" src="<%=Routes.project_badge_path(@socket, :badge, @project, "svg") %>" /></li>
+                  <li><h6 class="dropdown-header">Markdown</h6></li>
+                  <li><pre class="dropdown-item"><code class="language-markdown">
+                    [![Coverage Status](<%=Routes.project_badge_url(@socket, :badge, @project, "svg") %>)](<%=Routes.repository_show_url(@socket, :show, @repository.owner.login, @repository.name) %>)
+                  </code></pre></li>
+              </ul>
+            </div>
+
+            <%= link to: @repository.html_url, target: "_blank", class: "btn btn-primary px-4 py-2 js-click-ripple-enabled", style: "overflow: hidden; position: relative; z-index: 1;" do %>
+              <i class="fab fa-github me-1 opacity-50"></i> Open
+            <% end %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="content">
-  <h2 class="row breadcrumb">
-    <span class="media-body">
-      <%= @repository.full_name %>
-    </span>
-    <span class="coverage media-right <%= coverage_color(@project.current_coverage) %>">
-      <%= format_coverage(@project.current_coverage) %>
-    </span>
-  </h2>
-
+  <!-- Stats -->
   <div class="row">
-    <div class="btn-group offset-6 col-6">
-      <div class="dropdown btn-group">
-        <a class="btn btn-primary" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-          Show Token
-        </a>
-
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li><h6 class="dropdown-header">Token</h6></li>
-          <li><pre class="dropdown-item"><code><%= @project.token %></code></pre></li>
-        </ul>
-      </div>
-      <div class="dropdown btn-group">
-        <a class="btn btn-primary" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-          Get Badge
-        </a>
-
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li><img class="dropdown-header" src="<%=Routes.project_badge_path(@socket, :badge, @project, "svg") %>" /></li>
-          <li><h6 class="dropdown-header">Markdown</h6></li>
-          <li><pre class="dropdown-item"><code class="language-markdown">
-            [![Coverage Status](<%=Routes.project_badge_url(@socket, :badge, @project, "svg") %>)](<%=Routes.repository_show_url(@socket, :show, @repository.owner.login, @repository.name) %>)
-          </code></pre></li>
-          <li class="dropdown-item"></li>
-          <li class="dropdown-item"></li>
-        </ul>
-      </div>
-      <%= link to: @repository.html_url, target: "_blank", class: "btn btn-primary active" do %>
-        <i class="fab fa-github-alt"></i> View
-      <% end %>
+    <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+      <a class="block block-rounded block-link-pop border-start border-4 border-<%= coverage_badge(@project.current_coverage) %>" href="javascript:void(0)">
+        <div class="block-content block-content-full">
+          <div class="fs-sm fw-semibold text-uppercase text-muted">Main Branch</div>
+          <div class="fs-2 fw-normal text-dark"><%= format_coverage(@project.current_coverage) %></div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+      <a class="block block-rounded block-link-pop border-start border-4 border-<%= coverage_badge(@latest_build.coverage) %>" href="javascript:void(0)">
+        <div class="block-content block-content-full">
+          <div class="fs-sm fw-semibold text-uppercase text-muted">Latest Build</div>
+          <div class="fs-2 fw-normal text-dark"><%= format_coverage(@latest_build.coverage) %></div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+      <a class="block block-rounded block-link-pop border-start border-primary border-4" href="javascript:void(0)">
+        <div class="block-content block-content-full">
+          <div class="fs-sm fw-semibold text-uppercase text-muted">Main Branch Builds</div>
+          <div class="fs-2 fw-normal text-dark"><%= @total_builds_main %></div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+      <a class="block block-rounded block-link-pop border-start border-primary border-4" href="javascript:void(0)">
+        <div class="block-content block-content-full">
+          <div class="fs-sm fw-semibold text-uppercase text-muted">Total Builds</div>
+          <div class="fs-2 fw-normal text-dark"><%= @total_builds %></div>
+        </div>
+      </a>
+    </div>
   </div>
+  <!-- END Stats -->
+
+<%= if false do %>
+
+  <!-- Dashboard Charts -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="block block-rounded block-mode-loading-oneui">
+        <div class="block-header block-header-default">
+          <h3 class="block-title">Coverage History (Coming Soon)</h3>
+          <div class="block-options">
+            <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+              <i class="si si-refresh"></i>
+            </button>
+            <button type="button" class="btn-block-option">
+              <i class="si si-settings"></i>
+            </button>
+          </div>
+        </div>
+        <div class="block-content p-0 text-center">
+          <!-- Chart.js is initialized in js/pages/be_pages_dashboard_v1.min.js which was auto compiled from _js/pages/be_pages_dashboard_v1.js) -->
+          <!-- For more info and examples you can check out http://www.chartjs.org/docs/ -->
+          <div class="pt-3" style="height: 360px;"><canvas id="js-chartjs-dashboard-earnings" width="704" height="344" style="display: block; box-sizing: border-box; height: 344px; width: 704px;"></canvas></div>
+        </div>
+        <div class="block-content">
+          <div class="row items-push text-center py-3">
+            <div class="col-6 col-xl-3">
+              <i class="fa fa-wallet fa-2x text-muted"></i>
+              <div class="text-muted mt-3">$148,000</div>
+            </div>
+            <div class="col-6 col-xl-3">
+              <i class="fa fa-angle-double-up fa-2x text-muted"></i>
+              <div class="text-muted mt-3">+9% Earnings</div>
+            </div>
+            <div class="col-6 col-xl-3">
+              <i class="fa fa-ticket-alt fa-2x text-muted"></i>
+              <div class="text-muted mt-3">+20% Tickets</div>
+            </div>
+            <div class="col-6 col-xl-3">
+              <i class="fa fa-users fa-2x text-muted"></i>
+              <div class="text-muted mt-3">+46% Clients</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <!-- END Dashboard Charts -->
+<% end %>
 
-  <h2>Recent builds</h2>
-
-  <table class="table builds">
-    <thead>
-      <tr>
-        <th>Build</th>
-        <th>Branch</th>
-        <th>Coverage</th>
-        <th>Diff</th>
-        <th>Commit</th>
-        <th>Committer</th>
-        <th>Time</th>
-        <th>Via</th>
-      </tr>
-    </thead>
-    <tbody>
-  <%= for build <- @project.builds do %>
-      <tr>
-        <td><a href="/builds/<%= build.id %>">#<%= build.build_number %></a></td>
-        <td><%= build.branch %></td>
-        <td>
-          <%= format_coverage(build.coverage) %>
-        </td>
-        <td>
-          <%= if build.previous_coverage do %>
-            <%= render Librecov.SharedView, "coverage_diff.html", diff: build.coverage - build.previous_coverage %>
-          <% end %>
-        </td>
-        <td><%= render Librecov.BuildView, "commit.html", build: %{build|project: @project} %></td>
-        <td><%= build.committer_name %></td>
-        <td><%= human_time_ago(build.inserted_at) %></td>
-        <td><%= build.service_name %></td>
-      </tr>
-  <% end %>
-    </tbody>
-  </table>
+  <!-- Customers and Latest Orders -->
+  <div class="row row-deck">
+    <!-- Latest Orders -->
+    <div class="col-lg-12">
+      <div class="block block-rounded block-mode-loading-oneui">
+        <div class="block-header block-header-default">
+          <h3 class="block-title">Recent Builds</h3>
+        </div>
+        <div class="block-content block-content-full">
+          <table class="table table-striped table-hover table-borderless table-vcenter fs-sm mb-0">
+            <thead>
+              <tr class="text-uppercase">
+                <th class="fw-bold">ID</th>
+                <th class="d-none d-sm-table-cell fw-bold">Branch</th>
+                <th class="fw-bold">Coverage</th>
+                <th class="d-none d-sm-table-cell fw-bold">Diff</th>
+                <th class="d-none d-sm-table-cell fw-bold">Commit</th>
+                <th class="d-none d-sm-table-cell fw-bold">Commiter</th>
+                <th class="d-none d-sm-table-cell fw-bold">Time</th>
+                <th class="d-none d-sm-table-cell fw-bold">Via</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= for build <- @builds do %>
+                <%= live_component Librecov.RepositoryLive.BuildRow, build: build %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- END Latest Orders -->
+  </div>
+  <!-- END Customers and Latest Orders -->
 </div>
