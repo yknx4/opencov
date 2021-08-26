@@ -42,7 +42,7 @@ config :joken,
     """
   ]
 
-config :tesla, adapter: Tesla.Mock
+config :tesla, adapter: Tesla.Adapter.Ibrowse
 
 config :argon2_elixir,
   t_cost: 1,

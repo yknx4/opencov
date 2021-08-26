@@ -19,7 +19,11 @@ defmodule Librecov.Mixfile do
           "coveralls.detail",
           "coveralls.html",
           "coveralls.json",
-          "coveralls.post"
+          "coveralls.post",
+          "vcr",
+          "vcr.delete",
+          "vcr.check",
+          "vcr.show"
         ])
     ]
   end
@@ -92,7 +96,13 @@ defmodule Librecov.Mixfile do
       {:phoenix_live_view, "~> 0.16.0"},
       {:floki, ">= 0.30.0", only: :test},
       {:surface, "~> 0.5.0"},
-      {:kaffy, "~> 0.9.0"}
+      {:kaffy, "~> 0.9.0"},
+      {:ecto_factory, "~> 0.1.0"},
+      {:shorter_maps, "~> 2.0"},
+      {:mix_test_interactive, "~> 1.0", only: :dev, runtime: false},
+      {:exvcr, "~> 0.11", only: :test},
+      {:ibrowse, "~> 4.2", only: :test},
+      {:unsafe, "~> 1.0"}
     ]
   end
 
