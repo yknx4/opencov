@@ -107,6 +107,8 @@ defmodule Librecov.Services.Github.ChecksTests do
   }
 
   setup do
+    Application.put_env(:tesla, :adapter, Tesla.Mock)
+
     mock(fn
       %{method: :post, url: "https://api.github.com/repos/github/hello-world/check-runs"} ->
         json(@create_check, status: 201)
