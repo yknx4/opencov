@@ -11,6 +11,7 @@ defmodule Librecov do
     children = [
       {Mutex, name: LibreCov.JobLock},
       {Phoenix.PubSub, name: Librecov.PubSub},
+      %{id: NodeJS, start: {NodeJS, :start_link, [[path: File.cwd!(), pool_size: 4]]}},
       # Start the endpoint when the application starts
       {Librecov.Endpoint, []},
       # Start the Ecto repository

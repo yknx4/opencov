@@ -10,7 +10,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
   },
-  "author": "Daniel Perez <daniel@claudetech.com>",
+  "authors": [
+    "Daniel Perez <daniel@claudetech.com>",
+    "Ale Ornelas <me@ale.world>"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -64,8 +67,12 @@
     "typescript": "^4.3.5"
   },
   "lint-staged": {
-    "*.{js,css,md}": "prettier --write",
-    "*.{ex,exs}": "mix format"
+    "*.{css,md}": "prettier --write",
+    "*.{js,ts}": [
+      "prettier --write",
+      "ts-standard --fix"
+    ],
+    "*.{ex,exs, eex}": "mix format"
   },
   "config": {
     "commitizen": {
