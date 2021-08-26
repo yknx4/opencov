@@ -28,17 +28,20 @@ defmodule Librecov.Services.Authorizations do
     if !is_nil(token) && now < expires_at do
       {:ok, auth}
     else
-      with {:ok, %{token: new_token}} <-
-             Auth.github_client()
-             |> Map.put(:token, %{refresh_token: auth.refresh_token})
-             |> OAuth2.Client.refresh_token() do
-        auth
-        |> Authorization.changeset(
-          new_token
-          |> Map.from_struct()
-          |> Map.merge(:token, new_token.access_token)
-        )
-        |> Repo.update()
+      case Auth.github_client()
+           |> Map.put(:token, %{refresh_token: auth.refresh_token})
+           |> OAuth2.Client.refresh_token() do
+        {:ok, %{token: %{other_params: %{"error" => msg}}}} ->
+          {:error, msg}
+
+        {:ok, %{token: new_token}} ->
+          auth
+          |> Authorization.changeset(
+            new_token
+            |> Map.from_struct()
+            |> Map.put(:token, new_token.access_token)
+          )
+          |> Repo.update()
       end
     end
   end
