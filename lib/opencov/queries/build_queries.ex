@@ -25,6 +25,10 @@ defmodule Librecov.Queries.BuildQueries do
     query |> where([b], b.project_id == ^project_id)
   end
 
+  def for_branch(query, branch) do
+    query |> where([b], b.branch == ^branch)
+  end
+
   def latest(query) do
     query
     |> order_by([b], desc: b.inserted_at)

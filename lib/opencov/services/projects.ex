@@ -16,9 +16,19 @@ defmodule Librecov.Services.Projects do
     from(p in Project, where: p.repo_id in ^repos_ids, order_by: [desc: p.updated_at])
   end
 
+  def only_n(query, n) do
+    query
+    |> limit(^n)
+  end
+
   def with_latest_build(elems) do
     elems
     |> Repo.preload(builds: from(b in Build, order_by: [desc: b.inserted_at], limit: 1))
+  end
+
+  def with_latest_10_builds(elems) do
+    elems
+    |> Repo.preload(builds: from(b in Build, order_by: [desc: b.inserted_at], limit: 10))
   end
 
   def all(q), do: Repo.all(q)
