@@ -1,0 +1,46 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "authorization": "Bearer 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",
+        "user-agent": "Elixir"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.github.com/repos/github/ultra-secret"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/reference/repos#get-a-repository\"}",
+      "headers": {
+        "Server": "GitHub.com",
+        "Date": "Thu, 26 Aug 2021 01:15:24 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "107",
+        "X-OAuth-Scopes": "admin:enterprise, admin:gpg_key, admin:org, admin:org_hook, admin:public_key, admin:repo_hook, delete:packages, delete_repo, gist, notifications, repo, user, workflow, write:discussion, write:packages",
+        "X-Accepted-OAuth-Scopes": "repo",
+        "github-authentication-token-expiration": "2021-09-02 00:42:51 UTC",
+        "X-GitHub-Media-Type": "github.v3; format=json",
+        "X-RateLimit-Limit": "5000",
+        "X-RateLimit-Remaining": "4975",
+        "X-RateLimit-Reset": "1629941844",
+        "X-RateLimit-Used": "25",
+        "X-RateLimit-Resource": "core",
+        "Access-Control-Expose-Headers": "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation, Sunset",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "X-Frame-Options": "deny",
+        "X-Content-Type-Options": "nosniff",
+        "X-XSS-Protection": "0",
+        "Referrer-Policy": "origin-when-cross-origin, strict-origin-when-cross-origin",
+        "Content-Security-Policy": "default-src 'none'",
+        "Vary": "Accept-Encoding, Accept, X-Requested-With",
+        "X-GitHub-Request-Id": "F440:6A7C:D6F920:17CE02B:6126EB2C"
+      },
+      "status_code": 404,
+      "type": "ok"
+    }
+  }
+]

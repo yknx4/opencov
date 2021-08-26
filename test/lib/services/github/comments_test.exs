@@ -606,6 +606,10 @@ defmodule Librecov.Services.Github.CommentsTests do
     token: "qwerqwer"
   }
 
+  setup do
+    Application.put_env(:tesla, :adapter, Tesla.Mock)
+  end
+
   test "it adds a pr comment when pr is found" do
     {:ok, [comment]} =
       Comments.add_pr_comment(

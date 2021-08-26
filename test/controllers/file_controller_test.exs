@@ -14,10 +14,10 @@ defmodule Librecov.FileControllerTest do
     with_mocks([
       {Authorizations, [],
        [
-         ensure_fresh: fn a -> {:ok, %Authorization{}} end,
+         ensure_fresh!: fn _ -> %Authorization{} end,
          first_for_provider: fn _, _ -> %Authorization{} end
        ]},
-      {Files, [], [file: fn _, _, _ -> {:ok, %{content: Base.encode64("hello world")}} end]}
+      {Files, [], [file!: fn _, _, _ -> %{content: Base.encode64("hello world")} end]}
     ]) do
       file = insert(:file)
       conn = get(conn, file_path(conn, :show, file))

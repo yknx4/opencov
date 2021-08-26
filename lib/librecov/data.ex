@@ -3,10 +3,20 @@ defmodule Librecov.Data do
   The Data context.
   """
 
+  use Unsafe.Generator,
+    docs: false
+
+  import Librecov.Helpers.Happy
+
   import Ecto.Query, warn: false
 
   alias Librecov.Services.Github.Repos
   alias Librecov.Services.Github.AuthData
+
+  @unsafe [
+    {:list_repositories, 1, :unwrap},
+    {:get_repository, 3, :unwrap}
+  ]
 
   @doc """
   Returns the list of repositories.
@@ -18,8 +28,7 @@ defmodule Librecov.Data do
 
   """
   def list_repositories(%{provider: "github", token: token, refresh_token: _refresh_token}) do
-    {:ok, repos} = Repos.available_repos(token, sort: "pushed")
-    repos
+    Repos.available_repos(token, sort: "pushed")
   end
 
   @doc """
@@ -33,13 +42,12 @@ defmodule Librecov.Data do
       %Repository{}
 
   """
-  def get_repository!(
+  def get_repository(
         %{provider: "github", token: token, refresh_token: _refresh_token},
         owner,
         repo
       ) do
-    {:ok, repo} = Repos.repo(%AuthData{token: token, owner: owner, repo: repo})
-    repo
+    Repos.repo(%AuthData{token: token, owner: owner, repo: repo})
   end
 
   @doc """

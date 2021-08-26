@@ -1,6 +1,15 @@
 defmodule Librecov.Services.Github.Files do
   require Logger
 
+  use Unsafe.Generator,
+    docs: false
+
+  import Librecov.Helpers.Happy
+
+  @unsafe [
+    {:file, 3, :unwrap}
+  ]
+
   alias ExOctocat.Connection
   alias Librecov.Services.Github.AuthData
 
@@ -10,7 +19,7 @@ defmodule Librecov.Services.Github.Files do
     |> get_content(owner, repo, path, ref: ref)
   end
 
-  defp get_content(connection, owner, repo, path, opts \\ []) do
+  defp get_content(connection, owner, repo, path, opts) do
     optional_params = %{
       :ref => :query
     }
