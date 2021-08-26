@@ -15,7 +15,8 @@
     <link phx-track-static rel="stylesheet" id="css-theme" href="<%= Routes.static_path(@conn, "/css/themes/flat.min.css") %>" />
     <script phx-track-static defer type="text/javascript" src="<%=Routes.static_path(@conn, "/vendor.js") %>"></script>
     <script phx-track-static defer type="text/javascript" src="<%=Routes.static_path(@conn, "/app.js") %>"></script>
-    <link phx-track-static rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.2.0/styles/default.min.css">
+    <link phx-track-static rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/base16/solarized-dark.min.css">
+
   </head>
   <body>
     <div id="page-container" class="side-scroll page-header-dark main-content-narrow">
