@@ -22,7 +22,7 @@ module.exports = (env, options) => {
     optimization: {
       minimizer: [
         new TerserPlugin({
-          terserOptions: { cache: true, parallel: true, sourceMap: devMode }
+          parallel: true
         }),
         new OptimizeCSSAssetsPlugin({})
       ]
