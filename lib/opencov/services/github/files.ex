@@ -19,7 +19,7 @@ defmodule Librecov.Services.Github.Files do
     |> get_content(owner, repo, path, ref: ref)
   end
 
-  defp get_content(connection, owner, repo, path, opts \\ []) do
+  defp get_content(connection, owner, repo, path, opts) do
     optional_params = %{
       :ref => :query
     }
