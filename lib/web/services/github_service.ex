@@ -30,7 +30,6 @@ defmodule Librecov.GithubService do
                base_url: base_url,
                current_coverage: 0.0,
                token: "oc_#{SecureRandom.urlsafe_base64(12)}",
-               user_id: 1,
                repo_id: "github_#{repo_id}"
              })
            ) do
