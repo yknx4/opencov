@@ -81,7 +81,7 @@ defmodule Librecov.Mixfile do
       {:plug_cowboy, "~> 2.5"},
       {:ranch, "~> 1.8", override: true},
       {:meck, "~> 0.9", override: true},
-      {:tesla, "~> 1.2"},
+      {:tesla, "~> 1.4"},
       {:poison, "~> 3.0"},
       {:ex_octocat, github: "yknx4/ex_octocat", tag: "v1.1.4.1"},
       {:open_api_spex, "~> 3.10"},
