@@ -1032,6 +1032,18 @@
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
   integrity sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
 
+"@types/phoenix@*", "@types/phoenix@^1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@types/phoenix/-/phoenix-1.5.2.tgz#9846009959b752e04b3560e31f213ddbc137e499"
+  integrity sha512-eAr6f4apLMY0COa1WIZikziSUBq4plqE5TwzzUeDyXvfuWLnLckeMF43byOwbk6W5ioIJXSHP42iR3Wo7U3RiQ==
+
+"@types/phoenix_live_view@^0.15.1":
+  version "0.15.1"
+  resolved "https://registry.yarnpkg.com/@types/phoenix_live_view/-/phoenix_live_view-0.15.1.tgz#44b4f85bd1e061f4c74ecbdef65ccd357d13260c"
+  integrity sha512-dWKwJ9xqCHW+3TVfCIVC6/6ZMpURlDcu9qakWL89H5iWoSXs5X7gaKKnPXc7a1IKULieZjHBVkCW0Ui9aRf3Bg==
+  dependencies:
+    "@types/phoenix" "*"
+
 "@typescript-eslint/eslint-plugin@^4.8.2":
   version "4.29.3"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.29.3.tgz#95cb8029a8bd8bd9c7f4ab95074a7cb2115adefa"
@@ -4443,14 +4455,18 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-"phoenix@file:./deps/phoenix":
-  version "1.5.11"
+phoenix@^1.6.0-rc.0:
+  version "1.6.0-rc.0"
+  resolved "https://registry.yarnpkg.com/phoenix/-/phoenix-1.6.0-rc.0.tgz#ab700f66fa14e7bf38516289eb6b38269de66307"
+  integrity sha512-bhwoXqEvm/kbnMS7dqAY4i8+2ngSt2QAvYsYp7rrfNVTWzCZVI5jM9Ov3rOMXQHw/dFbcGFUAYKnZwNVUwJWYQ==
 
 "phoenix_html@file:./deps/phoenix_html":
-  version "3.0.2"
+  version "3.0.0"
 
-"phoenix_live_view@file:./deps/phoenix_live_view":
-  version "0.16.0"
+phoenix_live_view@^0.16.1:
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/phoenix_live_view/-/phoenix_live_view-0.16.1.tgz#5f5a1d4af1d4fdde58891d72ac9423b50959bcb1"
+  integrity sha512-ijojfiQY43d4VN8S0vniROwIPc8BvfjSfqrD4PQ0Zb4+DuHG/TkFPl/pR99E6S22NAp3cUUX09M1XVFWxwyLMg==
 
 picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.3:
   version "2.3.0"
