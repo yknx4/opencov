@@ -102,13 +102,14 @@ defmodule Librecov.Mixfile do
       {:mix_test_interactive, "~> 1.0", only: :dev, runtime: false},
       {:exvcr, "~> 0.11", only: :test},
       {:ibrowse, "~> 4.2", only: :test},
-      {:unsafe, "~> 1.0"}
+      {:unsafe, "~> 1.0"},
+      {:secure_random, "~> 0.5"}
     ]
   end
 
   defp aliases do
     [
-      "ecto.setup": ["ecto.create", "ecto.migrate", "seedex.seed"],
+      "ecto.setup": ["ecto.create", "ecto.migrate"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       "assets.deploy": ["cmd --cd assets node build.ts", "phx.digest"],
       sentry_recompile: ["compile", "deps.compile sentry --force"]
