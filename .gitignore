@@ -15,5 +15,4 @@ config/local.exs
 cover
 .elixir_ls
 
-priv/static
-priv/static
+/priv/static/assets/

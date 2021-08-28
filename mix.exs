@@ -41,7 +41,6 @@ defmodule Librecov.Mixfile do
 
   defp deps do
     [
-      {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
       {:nodejs, "~> 2.0"},
       {:oauth2, "~> 2.0"},
       {:sobelow, "~> 0.8", only: :dev},
@@ -76,6 +75,7 @@ defmodule Librecov.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:phoenix_live_view, "~> 0.16.0"},
       {:phoenix_live_dashboard, "~> 0.5"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 0.5"},
       {:plug_cowboy, "~> 2.5"},
@@ -110,14 +110,8 @@ defmodule Librecov.Mixfile do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "seedex.seed"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "assets.compile": [&compile_assets/1, "phx.digest"],
+      "assets.deploy": ["cmd --cd assets node build.ts", "phx.digest"],
       sentry_recompile: ["compile", "deps.compile sentry --force"]
     ]
-  end
-
-  defp compile_assets(_) do
-    System.cmd(Path.expand("node_modules/.bin/webpack-cli", __DIR__), ["build"],
-      into: IO.stream(:stdio, :line)
-    )
   end
 end

@@ -12,7 +12,7 @@
     </span>
   </span>
 
-  <span class="coverage media-right <%= coverage_color(@job.coverage) %>">
+  <span class={"coverage media-right #{ coverage_color(@job.coverage) }"}>
     <%= format_coverage(@job.coverage) %>
   </span>
 </h2>

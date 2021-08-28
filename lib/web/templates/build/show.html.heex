@@ -7,7 +7,7 @@
         #<%= @build.build_number %>
       </span>
     </span>
-    <span class="coverage media-right <%= coverage_color(@build.coverage) %>">
+    <span class={"coverage media-right #{ coverage_color(@build.coverage) }"}>
       <%= format_coverage(@build.coverage) %>
     </span>
   </h2>

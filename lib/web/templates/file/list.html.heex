@@ -24,7 +24,7 @@
           <%= link to: apply(@path_fn, @path_args ++ [[filters: @filters, order_field: k, order_direction: order]]) do %>
             <span><%= v %></span>
             <%= if elem(@order, 0) == k do %>
-              <i class="fa fa-sort-<%= elem(@order, 1) %>"></i>
+              <i class={"fa fa-sort-#{elem(@order, 1)}"}></i>
             <% end %>
           <% end %>
         </th>

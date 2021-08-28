@@ -46,7 +46,7 @@
       <div class="panel-body">
         <dl class="settings dl-horizontal">
           <%= for key <- ~w(signup_enabled restricted_signup_domains default_project_visibility)a do %>
-            <dt class="<%= key %>"><%= Display.atom(key) %></dt>
+            <dt class={key}><%= Display.atom(key) %></dt>
             <dd><%= Display.display(Map.get(@settings, key)) %></dd>
           <% end %>
         </dl>

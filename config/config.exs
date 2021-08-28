@@ -90,6 +90,14 @@ config :kaffy,
   admin_logo: "/images/logo.png",
   admin_logo_mini: "/images/logo.png"
 
+config :esbuild,
+  version: "0.12.24",
+  default: [
+    args: ~w(js/index.ts --bundle --target=es2016 --outdir=../priv/static/assets),
+    cd: Path.expand("../assets", __DIR__),
+    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ]
+
 import_config "#{Mix.env()}.exs"
 
 local_config_path = Path.expand("local.exs", __DIR__)

@@ -2571,6 +2571,21 @@ es-to-primitive@^1.2.1:
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
 
+esbuild-sass-plugin@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/esbuild-sass-plugin/-/esbuild-sass-plugin-1.5.2.tgz#57dbc94bc6b20531bb7143ecb2f69ea8d2fa8dcd"
+  integrity sha512-u8K9F3MMz9L+MNtvMvKx8BiBNjc+7XjDXT2bGaEpyrqPVaR0B7zrMCeYPPAE37KGffntM9Wji2YyGAQOI9L4kA==
+  dependencies:
+    esbuild "^0.12.20"
+    picomatch "^2.3.0"
+    resolve "^1.20.0"
+    sass "^1.37.5"
+
+esbuild@^0.12.20, esbuild@^0.12.24:
+  version "0.12.24"
+  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.12.24.tgz#21966fad25a80f368ed308101e88102bce0dc68f"
+  integrity sha512-C0ibY+HsXzYB6L/pLWEiWjMpghKsIc58Q5yumARwBQsHl9DXPakW+5NI/Y9w4YXiz0PEP6XTGTT/OV4Nnsmb4A==
+
 escalade@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/escalade/-/escalade-3.1.1.tgz#d8cfdc7000965c5a0174b4a82eaa5c0552742e40"
@@ -4468,7 +4483,7 @@ phoenix_live_view@^0.16.1:
   resolved "https://registry.yarnpkg.com/phoenix_live_view/-/phoenix_live_view-0.16.1.tgz#5f5a1d4af1d4fdde58891d72ac9423b50959bcb1"
   integrity sha512-ijojfiQY43d4VN8S0vniROwIPc8BvfjSfqrD4PQ0Zb4+DuHG/TkFPl/pR99E6S22NAp3cUUX09M1XVFWxwyLMg==
 
-picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.3:
+picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.3, picomatch@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.0.tgz#f1f061de8f6a4bf022892e2d128234fb98302972"
   integrity sha512-lY1Q/PiJGC2zOv/z391WOTD+Z02bCgsFfvxoXXf6h7kv9o+WmsmzYqrAwY63sNgOxE4xEdq0WyUnXfKeBrSvYw==
@@ -5138,6 +5153,13 @@ sass-loader@^12.1.0:
   dependencies:
     klona "^2.0.4"
     neo-async "^2.6.2"
+
+sass@^1.37.5:
+  version "1.38.2"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.38.2.tgz#970045d9966180002a8c8f3820fc114cddb42822"
+  integrity sha512-Bz1fG6qiyF0FX6m/I+VxtdVKz1Dfmg/e9kfDy2PhWOkq3T384q2KxwIfP0fXpeI+EyyETdOauH+cRHQDFASllA==
+  dependencies:
+    chokidar ">=3.0.0 <4.0.0"
 
 sass@^1.38.1:
   version "1.38.1"

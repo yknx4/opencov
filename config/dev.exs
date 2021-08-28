@@ -13,13 +13,11 @@ config :librecov, Librecov.Endpoint,
   cache_static_lookup: false,
   check_origin: false,
   watchers: [
-    {Path.expand("node_modules/.bin/webpack-cli"),
-     [
-       "watch",
-       "--color",
-       "--progress",
-       cd: Path.expand("../", __DIR__)
-     ]}
+    node: [
+      "build.ts",
+      cd: Path.expand("../assets", __DIR__),
+      env: %{"ESBUILD_LOG_LEVEL" => "silent", "ESBUILD_WATCH" => "1"}
+    ]
   ]
 
 # Watch static and templates for browser reloading.
@@ -28,11 +26,11 @@ config :librecov, Librecov.Endpoint,
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
-      ~r{web/views/.*(ex)$},
-      ~r{web/templates/.*(eex)$},
-      ~r{web/templates/.*(leex)$},
-      ~r{web/templates/.*(heex)$},
-      ~r"lib/my_app_web/live/.*(sface)$"
+      ~r{lib/web/views/.*(ex)$},
+      ~r{lib/web/templates/.*(eex)$},
+      ~r{lib/web/templates/.*(leex)$},
+      ~r{lib/.*/.*(heex)$},
+      ~r"lib/.*/live/.*(sface)$"
     ]
   ]
 
