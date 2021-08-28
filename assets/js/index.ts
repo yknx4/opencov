@@ -2,6 +2,9 @@
 // Remove this line if you add a your own CSS build pipeline (e.g postcss).
 import '../css/theme.scss'
 import '@fortawesome/fontawesome-free'
+import '@fortawesome/fontawesome-free/js/solid'
+import '@fortawesome/fontawesome-free/js/regular'
+import '@fortawesome/fontawesome-free/js/brands'
 
 // If you want to use Phoenix channels, run `mix help phx.gen.channel`
 // to get started and then uncomment the line below.
