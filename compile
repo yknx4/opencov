@@ -1,2 +1,1 @@
-./node_modules/.bin/webpack build --mode production
-mix phx.digest
+mix assets.deploy
