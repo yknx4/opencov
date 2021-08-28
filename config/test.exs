@@ -48,7 +48,10 @@ config :argon2_elixir,
   t_cost: 1,
   m_cost: 8
 
-config :librecov, :github, client_id: "133119"
+config :librecov, :github,
+  app_id: "133119",
+  client_id: "adsasdasdasd",
+  client_secret: "gdfgdfgdfgdf"
 
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
   client_id: "adsasdasdasd",
