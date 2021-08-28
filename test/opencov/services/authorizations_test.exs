@@ -20,7 +20,7 @@ defmodule Librecov.Services.AuthorizationsTest do
       }
 
       {:error, fresh_auth} = Authorizations.ensure_fresh(auth)
-      assert fresh_auth == "bad_refresh_token"
+      assert fresh_auth
     end
 
     test "it gets new token if it is still valid, but token is empty" do
