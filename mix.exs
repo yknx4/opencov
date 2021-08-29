@@ -111,7 +111,11 @@ defmodule Librecov.Mixfile do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "assets.deploy": ["cmd --cd assets node build.ts", "phx.digest"],
+      "assets.deploy": [
+        "cmd yarn run postcss --ext=css -m --dir=./priv/static/assets ./assets/css",
+        "cmd --cd assets node build.ts",
+        "phx.digest"
+      ],
       sentry_recompile: ["compile", "deps.compile sentry --force"]
     ]
   end

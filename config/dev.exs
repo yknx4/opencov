@@ -13,6 +13,15 @@ config :librecov, Librecov.Endpoint,
   cache_static_lookup: false,
   check_origin: false,
   watchers: [
+    yarn: [
+      "postcss",
+      "--watch",
+      "--ext=css",
+      "-m",
+      "--dir=./priv/static/assets",
+      "--verbose",
+      "./assets/css"
+    ],
     node: [
       "build.ts",
       cd: Path.expand("../assets", __DIR__),
@@ -24,6 +33,7 @@ config :librecov, Librecov.Endpoint,
 config :librecov, Librecov.Endpoint,
   live_reload: [
     patterns: [
+      ~r{assets/.*(scss,ts)$},
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
       ~r{lib/web/views/.*(ex)$},
