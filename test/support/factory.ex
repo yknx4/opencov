@@ -32,7 +32,7 @@ defmodule Librecov.Factory do
   def build_factory do
     %Librecov.Build{
       build_number: sequence(:build_number, & &1),
-      project: insert(:project)
+      project: build(:project)
     }
   end
 
