@@ -120,6 +120,10 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ hashFiles('mix.lock') }}-v2
       - name: Install NPM Packages (Global)
         run: yarn install
+      - name: Seed
+        run: |
+          MIX_ENV=test mix ecto.setup
+          MIX_ENV=test mix run priv/repo/seeds.exs
       - run: mix coveralls.json --trace --slowest 10
       - uses: codecov/codecov-action@v2
         with:
@@ -133,8 +137,6 @@ jobs:
           TOKEN: ${{ secrets.OPENCOV_TOKEN }}
           COVERALLS_ENDPOINT: ${{ secrets.OPENCOV_ENDPOINT }}
         run: |
-          MIX_ENV=test mix ecto.setup
-          MIX_ENV=test mix run priv/repo/seeds.exs
           MIX_ENV=test mix coveralls.post \
           --name github \
           --build "$GITHUB_RUN_ID" \
