@@ -7,7 +7,8 @@ defmodule Librecov.Factory do
       name: sequence(:name, &"name/#{&1}"),
       base_url: sequence(:base_url, &"https://github.com/tuvistavie/name-#{&1}"),
       current_coverage: 50.0,
-      repo_id: sequence(:repo_id, &"github_#{&1}")
+      repo_id: sequence(:repo_id, &"github_#{&1}"),
+      token: sequence(:token, &"my_secret_token_#{&1}")
     }
   end
 
