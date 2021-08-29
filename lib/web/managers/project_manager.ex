@@ -20,7 +20,11 @@ defmodule Librecov.ProjectManager do
   end
 
   def generate_token(changeset) do
-    put_change(changeset, :token, unique_token())
+    if is_nil(get_change(changeset, :token)) do
+      put_change(changeset, :token, unique_token())
+    else
+      changeset
+    end
   end
 
   defp unique_token() do
