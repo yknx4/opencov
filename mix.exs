@@ -103,7 +103,8 @@ defmodule Librecov.Mixfile do
       {:exvcr, "~> 0.11", only: :test},
       {:ibrowse, "~> 4.2", only: :test},
       {:unsafe, "~> 1.0"},
-      {:secure_random, "~> 0.5"}
+      {:secure_random, "~> 0.5"},
+      {:surface_formatter, "~> 0.5.2"}
     ]
   end
 
