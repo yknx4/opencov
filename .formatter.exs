@@ -1,10 +1,9 @@
 [
+  surface_line_length: 120,
   import_deps: [:ecto, :phoenix, :surface],
-  surface_inputs: ["{lib,test}/**/*.{heex,ex,exs,sface}"],
-  inputs: [
-    "mix.exs",
-    "{config,lib,test,priv,web}/**/*.{ex,exs}"
-  ],
+  inputs: ["*.{ex,exs}", "priv/*/seeds.exs", "{config,lib,test}/**/*.{ex,exs}"],
+  surface_inputs: ["{lib,test}/**/*.{ex,sface}"],
+  subdirectories: ["priv/*/migrations"],
   locals_without_parens: [
     # Formatter tests
     assert_format: 2,
