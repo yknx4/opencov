@@ -49,7 +49,9 @@ defmodule Librecov.ConnCase do
     end
   end
 
-  setup _tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Librecov.Repo)
+  setup tags do
+    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Librecov.Repo, shared: not tags[:async])
+    on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
+    {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

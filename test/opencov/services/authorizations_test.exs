@@ -5,6 +5,11 @@ defmodule Librecov.Services.AuthorizationsTest do
   alias Librecov.Services.Authorizations
   alias Librecov.User.Authorization
 
+  setup do
+    Ecto.Adapters.SQL.Sandbox.mode(Librecov.Repo, :auto)
+    :ok
+  end
+
   describe "ensure_fresh" do
     test "it gets the same token if it is still valid" do
       auth = %Authorization{expires_at: (Timex.now() |> Timex.to_unix()) + 120, token: "token"}

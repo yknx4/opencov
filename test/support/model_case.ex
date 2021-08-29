@@ -23,33 +23,25 @@ defmodule Librecov.ModelCase do
     end
   end
 
-  setup _tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Librecov.Repo)
+  setup tags do
+    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Librecov.Repo, shared: not tags[:async])
+    on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
+    :ok
   end
 
   @doc """
-  Helper for returning list of errors in model when passed certain data.
+  A helper that transforms changeset errors into a map of messages.
 
-  ## Examples
+      assert {:error, changeset} = Accounts.create_user(%{password: "short"})
+      assert "password is too short" in errors_on(changeset).password
+      assert %{password: ["password is too short"]} = errors_on(changeset)
 
-  Given a User model that lists `:name` as a required field and validates
-  `:password` to be safe, it would return:
-
-      iex> errors_on(%User{}, %{password: "password"})
-      [password: "is unsafe", name: "is blank"]
-
-  You could then write your assertion like:
-
-      assert {:password, "is unsafe"} in errors_on(%User{}, %{password: "password"})
-
-  You can also create the changeset manually and retrieve the errors
-  field directly:
-
-      iex> changeset = UserManager.changeset(%User{}, password: "password")
-      iex> {:password, "is unsafe"} in changeset.errors
-      true
   """
-  def errors_on(model, data) do
-    model.__struct__.changeset(model, data).errors
+  def errors_on(changeset) do
+    Ecto.Changeset.traverse_errors(changeset, fn {message, opts} ->
+      Regex.replace(~r"%{(\w+)}", message, fn _, key ->
+        opts |> Keyword.get(String.to_existing_atom(key), key) |> to_string()
+      end)
+    end)
   end
 end

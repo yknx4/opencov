@@ -6,6 +6,11 @@ defmodule Librecov.Templates.CommentTemplateTest do
   alias Librecov.Build
   alias Librecov.Project
 
+  setup do
+    Ecto.Adapters.SQL.Sandbox.mode(Librecov.Repo, :auto)
+    :ok
+  end
+
   @base_project %Project{id: 0}
   @base_build %Build{id: 0, project: @base_project}
 
