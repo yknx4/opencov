@@ -1,5 +1,5 @@
 defmodule Librecov.JobViewTest do
-  use Librecov.ConnCase, async: true
+  use Librecov.ConnCase
 
   import Librecov.JobView
 
