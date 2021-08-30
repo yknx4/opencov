@@ -3,6 +3,7 @@ defmodule Librecov.JobTest do
 
   alias Librecov.Job
 
+  @tag :skip
   test "compute_coverage" do
     job = insert(:job)
     insert(:file, job: job, coverage_lines: [0, 1, nil, 0, 2, 1])
