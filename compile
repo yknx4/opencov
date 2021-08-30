@@ -3,3 +3,4 @@ cd assets
 node build.ts
 cd ../
 mix phx.digest
+mix sentry_recompile
