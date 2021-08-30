@@ -3,7 +3,6 @@ defmodule Librecov.FileTest do
 
   alias Librecov.File
 
-  @tag :skip
   test "for_job" do
     build = insert(:build)
     job = insert(:job, build: build)
@@ -18,7 +17,6 @@ defmodule Librecov.FileTest do
     assert other_files_ids == [other_file.id]
   end
 
-  @tag :skip
   test "covered and unperfect filters" do
     insert(:file, coverage_lines: [0, 0])
     insert(:file, coverage_lines: [100, 100])
@@ -28,7 +26,6 @@ defmodule Librecov.FileTest do
     assert List.first(normal_only).id == normal.id
   end
 
-  @tag :skip
   test "changed and cov_changed filters" do
     previous_file =
       insert(:file, source: "print 'hello'", coverage_lines: [0, 100]) |> Repo.preload(:job)

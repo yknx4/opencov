@@ -46,7 +46,6 @@ defmodule Librecov.BuildManagerTest do
     assert build.previous_coverage == nil
   end
 
-  @tag :skip
   test "previous_build when previous build exists" do
     previous_build = insert(:build) |> Repo.preload(:project)
 

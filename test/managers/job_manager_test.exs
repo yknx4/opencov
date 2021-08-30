@@ -14,7 +14,6 @@ defmodule Librecov.JobManagerTest do
     refute changeset.valid?
   end
 
-  @tag :skip
   test "set_job_number" do
     previous_job = insert(:job) |> Repo.preload(:build)
 
@@ -38,7 +37,6 @@ defmodule Librecov.JobManagerTest do
     assert job.previous_job_id == nil
   end
 
-  @tag :skip
   test "set_previous_values when a previous job exists" do
     project = insert(:project)
 

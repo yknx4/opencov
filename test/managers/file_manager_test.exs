@@ -21,13 +21,11 @@ defmodule Librecov.FileManagerTest do
     assert file.coverage == 0
   end
 
-  @tag :skip
   test "normal coverage" do
     file = insert(:file, coverage_lines: @coverage_lines)
     assert file.coverage == 50
   end
 
-  @tag :skip
   test "set_previous_file when a previous file exists" do
     project = insert(:project)
 
