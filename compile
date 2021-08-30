@@ -1,4 +1,4 @@
-yarn run postcss --ext=css -m --dir=./priv/static/assets ./assets/css
+node_modules/.bin/postcss --verbose --ext=css -m --dir=./priv/static/assets ./assets/css
 cd assets
 node build.ts
 cd ../
