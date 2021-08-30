@@ -75,4 +75,9 @@ defmodule Librecov.Factory do
   def confirmed_user(user) do
     %{user | confirmed_at: Timex.now(), password_initialized: true}
   end
+
+  def insert_with_changeset(manager, model, kind, params \\ %{}) do
+    apply(manager, :changeset, [struct(model, []), params_for(kind, params)])
+    |> Librecov.Repo.insert!()
+  end
 end

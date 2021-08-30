@@ -50,10 +50,12 @@ defmodule Librecov.BuildManagerTest do
     previous_build = insert(:build) |> Repo.preload(:project)
 
     build =
-      insert(:build,
+      params_for(:build,
         project: previous_build.project,
         build_number: previous_build.build_number + 1
       )
+
+    build = BuildManager.changeset(%Build{}, build) |> Repo.insert!()
 
     assert build.previous_build_id == previous_build.id
     assert build.previous_coverage == previous_build.coverage
