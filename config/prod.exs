@@ -63,6 +63,11 @@ config :event_bus_logger,
 config :event_bus,
   error_handler: {Librecov.Helpers.SentryErrorLogger, :log}
 
+config :librecov, :github,
+  app_id: System.get_env("GITHUB_APP_ID"),
+  client_id: System.get_env("GITHUB_CLIENT_ID"),
+  client_secret: System.get_env("GITHUB_CLIENT_SECRET")
+
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
   client_id: System.get_env("GITHUB_CLIENT_ID"),
   client_secret: System.get_env("GITHUB_CLIENT_SECRET")
