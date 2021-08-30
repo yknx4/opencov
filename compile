@@ -1,1 +1,3 @@
-mix assets.deploy
+yarn run postcss --ext=css -m --dir=./priv/static/assets ./assets/css
+node assets/build.ts
+mix phx.digest
