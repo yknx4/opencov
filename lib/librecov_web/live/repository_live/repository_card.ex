@@ -34,45 +34,36 @@ defmodule Librecov.RepositoryLive.RepositoryCard do
     <div class="block block-rounded block-bordered block-fx-pop">
       <div class="block-header block-header-default">
         <h3 class="block-title">
-          {#if !is_nil(project.id) }
-          <Link
-            label={@repository.full_name}
-            to={Routes.repository_show_path(@socket, :show, @repository.owner.login, @repository.name)}
-          />
+          {#if !is_nil(project.id)}
+            <Link
+              label={@repository.full_name}
+              to={Routes.repository_show_path(@socket, :show, @repository.owner.login, @repository.name)}
+            />
           {#else}
-          {@repository.full_name}
+            {@repository.full_name}
           {/if}
         </h3>
         <div class="block-options">
-          {#if is_nil(project.id) }
-          <Link
-            class="btn-block-option"
-            to={"#{@repository.html_url}/settings/installations"}
-            opts={target: "_blank"}
-          ><i class="si si-settings"></i></Link>
+          {#if is_nil(project.id)}
+            <Link class="btn-block-option" to={"#{@repository.html_url}/settings/installations"} opts={target: "_blank"}><i class="si si-settings" /></Link>
           {/if}
         </div>
       </div>
       <div class={"block-content block-content-full ribbon ribbon-#{coverage_badge(project.current_coverage)} ribbon-bookmark"}>
-        {#if !is_nil(project.id) }
-        <div class="ribbon-box">
-          {format_coverage(project.current_coverage)}
-        </div>
+        {#if !is_nil(project.id)}
+          <div class="ribbon-box">
+            {format_coverage(project.current_coverage)}
+          </div>
         {/if}
-        {#if !is_nil(@repository.description) }
-        <p>{@repository.description}</p>
+        {#if !is_nil(@repository.description)}
+          <p>{@repository.description}</p>
         {/if}
-        {#if !is_nil(latest_build) && !is_nil(latest_build.commit_message) }
-        <p class="card-text text-muted">
-
-        <Link
-            class="text-muted"
-            label={latest_build.commit_message}
-            to={Routes.build_path(@socket, :show, latest_build)}
-          />
-          {#if !is_nil(latest_build.branch) }
-          on branch <span class="font-italic">{latest_build.branch}</span>
-          {/if}
+        {#if !is_nil(latest_build) && !is_nil(latest_build.commit_message)}
+          <p class="card-text text-muted">
+            <Link class="text-muted" label={latest_build.commit_message} to={Routes.build_path(@socket, :show, latest_build)} />
+            {#if !is_nil(latest_build.branch)}
+              on branch <span class="font-italic">{latest_build.branch}</span>
+            {/if}
           </p>
         {/if}
         {#for item <- topics}
@@ -85,10 +76,11 @@ defmodule Librecov.RepositoryLive.RepositoryCard do
         {/for}
       </div>
       <div class="block-content bg-light px-4 py-2 m-0">
-        {#if !is_nil(repo.language) }
-        <small class="text-muted pe-2"><i class="fas fa-code"></i> {repo.language} </small>
+        {#if !is_nil(repo.language)}
+          <small class="text-muted pe-2"><i class="fas fa-code" /> {repo.language}
+          </small>
         {/if}
-        <small class="text-muted"><i class="fas fa-history"></i> Updated {latest_update |> Timex.from_now()}</small>
+        <small class="text-muted"><i class="fas fa-history" /> Updated {latest_update |> Timex.from_now()}</small>
       </div>
     </div>
     """

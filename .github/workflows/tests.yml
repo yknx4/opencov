@@ -3,6 +3,8 @@ on: push
 jobs:
   dependencies:
     runs-on: ubuntu-latest
+    env:
+      MIX_ENV: test
     strategy:
       matrix:
         elixir: ["1.12.2"]
@@ -42,6 +44,8 @@ jobs:
   static-code-analysis:
     needs: dependencies
     runs-on: ubuntu-latest
+    env:
+      MIX_ENV: test
     strategy:
       matrix:
         elixir: ["1.12.2"]
@@ -82,7 +86,7 @@ jobs:
         otp: ["24.0"]
     services:
       db:
-        image: postgres:latest
+        image: postgres:13-alpine
         ports: ["5432:5432"]
         env:
           POSTGRES_PASSWORD: postgres
@@ -120,6 +124,9 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ hashFiles('mix.lock') }}-v2
       - name: Install NPM Packages (Global)
         run: yarn install
+      - name: Seed
+        run: |
+          MIX_ENV=test mix ecto.setup
       - run: mix coveralls.json --trace --slowest 10
       - uses: codecov/codecov-action@v2
         with:

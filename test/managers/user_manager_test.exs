@@ -4,6 +4,11 @@ defmodule Librecov.UserManagerTest do
   alias Librecov.User
   alias Librecov.UserManager
 
+  setup do
+    insert(:settings)
+    :ok
+  end
+
   test "changeset with valid attributes" do
     changeset =
       UserManager.changeset(%User{}, Map.delete(params_for(:user), :password_confirmation))

@@ -13,35 +13,30 @@ defmodule Librecov.RepositoryLive.BuildRow do
     <tr>
       <td>
         <span class="fw-semibold">
-          <Link
-            label={"##{@build.build_number}"}
-            to={Routes.build_path(@socket, :show, @build.id)}
-          />
+          <Link label={"##{@build.build_number}"} to={Routes.build_path(@socket, :show, @build.id)} />
         </span>
       </td>
       <td class="d-none d-sm-table-cell">
         <span class="fs-sm text-muted">{@build.branch}</span>
       </td>
       <td>
-        <span class={"fw-semibold text-#{coverage_badge(@build.coverage)}"}>{ format_coverage(@build.coverage) }</span>
+        <span class={"fw-semibold text-#{coverage_badge(@build.coverage)}"}>{format_coverage(@build.coverage)}</span>
       </td>
       <td>
         <span class="fw-semibold">
-        {#if !is_nil(@build.previous_coverage)}
-          <CoverageDiff diff={@build.coverage - @build.previous_coverage} />
-        {#else}
-          N/A
-        {/if}
+          {#if !is_nil(@build.previous_coverage)}
+            <CoverageDiff diff={@build.coverage - @build.previous_coverage} />
+          {#else}
+            N/A
+          {/if}
         </span>
       </td>
       <td>
         <span class="fw-semibold">
-         {@build.commit_message}
-         {#if @build.commit_sha}
-          <Link
-            to={commit_link(@build.project, @build.commit_sha)}
-          ><i class={"fab #{repository_class(@build.project)}"}></i></Link>
-         {/if}
+          {@build.commit_message}
+          {#if @build.commit_sha}
+            <Link to={commit_link(@build.project, @build.commit_sha)}><i class={"fab #{repository_class(@build.project)}"} /></Link>
+          {/if}
         </span>
       </td>
       <td class="d-none d-sm-table-cell">

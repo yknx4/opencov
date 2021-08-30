@@ -30,8 +30,6 @@ config :scrivener_html,
 
 config :librecov, PlugBasicAuth, enable: false
 
-config :seedex, repo: Librecov.Repo
-
 config :librecov, :email,
   sender: "LibreCov <info@librecov.com>",
   smtp: [

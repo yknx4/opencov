@@ -2,6 +2,7 @@ defmodule Librecov.FileTest do
   use Librecov.ModelCase
 
   alias Librecov.File
+  alias Librecov.FileManager
 
   test "for_job" do
     build = insert(:build)
@@ -18,9 +19,13 @@ defmodule Librecov.FileTest do
   end
 
   test "covered and unperfect filters" do
-    insert(:file, coverage_lines: [0, 0])
-    insert(:file, coverage_lines: [100, 100])
-    normal = insert(:file, coverage_lines: [50, 100, 0])
+    job = insert(:job, previous_job: nil)
+    insert_with_changeset(FileManager, File, :file, coverage_lines: [0, 0], job: job)
+    insert_with_changeset(FileManager, File, :file, coverage_lines: [100, 100], job: job)
+
+    normal =
+      insert_with_changeset(FileManager, File, :file, coverage_lines: [50, 100, 0], job: job)
+
     normal_only = File |> File.with_filters(["unperfect", "covered"]) |> Librecov.Repo.all()
     assert Enum.count(normal_only) == 1
     assert List.first(normal_only).id == normal.id

@@ -51,36 +51,37 @@ defmodule Librecov.Mixfile do
       {:mutex, "~> 1.3"},
       {:deep_merge, "~> 1.0"},
       {:sentry, "~> 8.0"},
-      {:plug_cloudflare, ">= 1.2.0"},
-      {:joken, "~> 2.0"},
+      {:plug_cloudflare, "~> 1.3"},
+      {:joken, "~> 2.4"},
       {:stream_gzip, "~> 0.4"},
-      {:gettext, "~> 0.11"},
-      {:secure_random, "~> 0.2"},
+      {:gettext, "~> 0.18"},
       {:temp, "~> 0.4"},
-      {:timex, "~> 3.4"},
+      {:timex, "~> 3.7"},
       {:scrivener_ecto, "~> 2.7"},
-      {:navigation_history, "~> 0.2"},
+      {:navigation_history, "~> 0.4"},
       {:ex_machina, "~> 2.7"},
       {:mailman, "~> 0.4"},
       {:eiconv, "~> 1.0"},
-      {:scrivener_html, "~> 1.3"},
-      {:seedex, "~> 0.3"},
+      {:scrivener_html, "~> 1.8"},
       {:excoveralls, "~> 0.10", only: :test},
       {:mock, "~> 0.3", only: :test},
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:jason, "~> 1.0"},
-      {:phoenix, "~> 1.5.10", override: true},
-      {:phoenix_ecto, "~> 4.1"},
-      {:ecto_sql, "~> 3.4"},
-      {:postgrex, ">= 0.0.0"},
+      {:phoenix, "~> 1.6.0-rc.0", override: true},
       {:phoenix_html, "~> 3.0", override: true},
+      {:phoenix_ecto, "~> 4.4"},
+      {:ecto_sql, "~> 3.7"},
+      {:postgrex, ">= 0.0.0"},
+      {:phoenix_live_view, "~> 0.16.0"},
+      {:phoenix_live_dashboard, "~> 0.5"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_dashboard, "~> 0.4"},
-      {:plug_cowboy, "~> 2.0"},
+      {:telemetry_metrics, "~> 0.6"},
+      {:telemetry_poller, "~> 0.5"},
+      {:plug_cowboy, "~> 2.5"},
       {:ranch, "~> 1.8", override: true},
       {:meck, "~> 0.9", override: true},
-      {:tesla, "~> 1.2"},
+      {:tesla, "~> 1.4"},
       {:poison, "~> 3.0"},
       {:ex_octocat, github: "yknx4/ex_octocat", tag: "v1.1.4.1"},
       {:open_api_spex, "~> 3.10"},
@@ -92,8 +93,7 @@ defmodule Librecov.Mixfile do
       {:guardian_db, "~> 2.1"},
       {:guardian_phoenix, "~> 2.0"},
       {:argon2_elixir, "~> 2.0"},
-      {:ecto_resource, "~> 1.1.0"},
-      {:phoenix_live_view, "~> 0.16.0"},
+      {:ecto_resource, "~> 1.3"},
       {:floki, ">= 0.30.0", only: :test},
       {:surface, "~> 0.5.0"},
       {:kaffy, "~> 0.9.0"},
@@ -102,22 +102,22 @@ defmodule Librecov.Mixfile do
       {:mix_test_interactive, "~> 1.0", only: :dev, runtime: false},
       {:exvcr, "~> 0.11", only: :test},
       {:ibrowse, "~> 4.2", only: :test},
-      {:unsafe, "~> 1.0"}
+      {:unsafe, "~> 1.0"},
+      {:secure_random, "~> 0.5"},
+      {:surface_formatter, "~> 0.5.2"}
     ]
   end
 
   defp aliases do
     [
-      "ecto.setup": ["ecto.create", "ecto.migrate", "seedex.seed"],
+      "ecto.setup": ["ecto.create", "ecto.migrate"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "assets.compile": [&compile_assets/1, "phx.digest"],
+      "assets.deploy": [
+        "cmd yarn run postcss --ext=css -m --dir=./priv/static/assets ./assets/css",
+        "cmd --cd assets node build.ts",
+        "phx.digest"
+      ],
       sentry_recompile: ["compile", "deps.compile sentry --force"]
     ]
-  end
-
-  defp compile_assets(_) do
-    System.cmd(Path.expand("node_modules/.bin/webpack-cli", __DIR__), ["build"],
-      into: IO.stream(:stdio, :line)
-    )
   end
 end

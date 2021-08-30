@@ -35,7 +35,7 @@ defmodule Librecov.Mailer do
   end
 
   def template_path(module, action, format) do
-    Path.join([@templates_base_path, module_path(module), "#{action}.#{format}.eex"])
+    Path.join([@templates_base_path, module_path(module), "#{action}.#{format}.heex"])
   end
 
   defp module_path(module) do

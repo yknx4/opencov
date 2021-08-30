@@ -1,5 +1,0 @@
-<%= if abs(@diff) >= 0.001 do %>
-  <span class="coverage-diff coverage <%= if @diff > 0, do: "good", else: "none" %>">
-    <i class="fas fa-arrow-circle-<%= if @diff > 0, do: "up", else: "down" %>"></i><%= format_coverage(abs(@diff)) %>
-  </span>
-<% end %>

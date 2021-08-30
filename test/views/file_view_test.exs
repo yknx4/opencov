@@ -1,5 +1,5 @@
 defmodule Librecov.FileViewTest do
-  use Librecov.ConnCase, async: true
+  use Librecov.ConnCase
 
   import Librecov.FileView, only: [filters: 0, short_name: 1]
 
