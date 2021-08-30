@@ -3,6 +3,8 @@ on: push
 jobs:
   dependencies:
     runs-on: ubuntu-latest
+    env:
+      MIX_ENV: test
     strategy:
       matrix:
         elixir: ["1.12.2"]
@@ -42,6 +44,8 @@ jobs:
   static-code-analysis:
     needs: dependencies
     runs-on: ubuntu-latest
+    env:
+      MIX_ENV: test
     strategy:
       matrix:
         elixir: ["1.12.2"]
