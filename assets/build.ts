@@ -37,4 +37,9 @@ if (watch) {
 
     process.stdin.resume()
   })
+} else {
+  promise.catch((e) => {
+    console.error(e)
+    process.exit(10)
+  })
 }
