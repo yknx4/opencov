@@ -1,6 +1,7 @@
 defmodule Librecov.Factory do
-  use ExMachina
-  use ExMachina.EctoWithChangesetStrategy, repo: Librecov.Repo
+  # use ExMachina
+  # use ExMachina.EctoWithChangesetStrategy, repo: Librecov.Repo
+  use ExMachina.Ecto, repo: Librecov.Repo
 
   def project_factory do
     %Librecov.Project{
@@ -32,7 +33,8 @@ defmodule Librecov.Factory do
   def build_factory do
     %Librecov.Build{
       build_number: sequence(:build_number, & &1),
-      project: fn -> build(:project) end
+      project: fn -> build(:project) end,
+      build_started_at: Timex.now() |> Timex.to_datetime()
     }
   end
 
@@ -48,7 +50,8 @@ defmodule Librecov.Factory do
       job: fn -> build(:job) end,
       name: sequence(:name, &"file-#{&1}"),
       source: "return 0",
-      coverage_lines: []
+      coverage_lines: [nil],
+      coverage: 0.0
     }
   end
 
@@ -61,76 +64,76 @@ defmodule Librecov.Factory do
     }
   end
 
-  def make_changeset(%Librecov.Project{} = project) do
-    Librecov.ProjectManager.changeset(project, %{})
-  end
+  # def make_changeset(%Librecov.Project{} = project) do
+  #   Librecov.ProjectManager.changeset(project, %{})
+  # end
 
-  def make_changeset(%Librecov.File{} = file) do
-    {job_id, file} = Map.pop(file, :job_id)
-    job_id = job_id || file.job.id
-    params = Map.from_struct(file)
+  # def make_changeset(%Librecov.File{} = file) do
+  #   {job_id, file} = Map.pop(file, :job_id)
+  #   job_id = job_id || file.job.id
+  #   params = Map.from_struct(file)
 
-    job =
-      if job_id do
-        Librecov.Repo.get(Librecov.Job, job_id)
-      else
-        insert(:job)
-      end
+  #   job =
+  #     if job_id do
+  #       Librecov.Repo.get(Librecov.Job, job_id)
+  #     else
+  #       insert(:job)
+  #     end
 
-    file = Ecto.build_assoc(job, :files)
-    Librecov.FileManager.changeset(file, params)
-  end
+  #   file = Ecto.build_assoc(job, :files)
+  #   Librecov.FileManager.changeset(file, params)
+  # end
 
-  def make_changeset(%Librecov.Build{} = build) do
-    {project_id, build} = Map.pop(build, :project_id)
-    project_id = project_id || build.project.id
-    params = Map.from_struct(build)
+  # def make_changeset(%Librecov.Build{} = build) do
+  #   {project_id, build} = Map.pop(build, :project_id)
+  #   project_id = project_id || build.project.id
+  #   params = Map.from_struct(build)
 
-    project =
-      if project_id do
-        Librecov.Repo.get(Librecov.Project, project_id)
-      else
-        insert(:project)
-      end
+  #   project =
+  #     if project_id do
+  #       Librecov.Repo.get(Librecov.Project, project_id)
+  #     else
+  #       insert(:project)
+  #     end
 
-    build = Ecto.build_assoc(project, :builds)
-    Librecov.BuildManager.changeset(build, params)
-  end
+  #   build = Ecto.build_assoc(project, :builds)
+  #   Librecov.BuildManager.changeset(build, params)
+  # end
 
-  def make_changeset(%Librecov.Job{} = job) do
-    {build_id, job} = Map.pop(job, :build_id)
-    build_id = build_id || job.build.id
-    params = Map.from_struct(job)
+  # def make_changeset(%Librecov.Job{} = job) do
+  #   {build_id, job} = Map.pop(job, :build_id)
+  #   build_id = build_id || job.build.id
+  #   params = Map.from_struct(job)
 
-    build =
-      if build_id do
-        Librecov.Repo.get(Librecov.Build, build_id)
-      else
-        insert(:build)
-      end
+  #   build =
+  #     if build_id do
+  #       Librecov.Repo.get(Librecov.Build, build_id)
+  #     else
+  #       insert(:build)
+  #     end
 
-    job = Ecto.build_assoc(build, :jobs)
-    Librecov.JobManager.changeset(job, params)
-  end
+  #   job = Ecto.build_assoc(build, :jobs)
+  #   Librecov.JobManager.changeset(job, params)
+  # end
 
-  def make_changeset(%Librecov.Badge{} = badge) do
-    {project_id, badge} = Map.pop(badge, :project_id)
-    params = Map.from_struct(badge)
+  # def make_changeset(%Librecov.Badge{} = badge) do
+  #   {project_id, badge} = Map.pop(badge, :project_id)
+  #   params = Map.from_struct(badge)
 
-    project =
-      if project_id do
-        Librecov.Repo.get(Librecov.Project, project_id)
-      else
-        insert(:project)
-      end
+  #   project =
+  #     if project_id do
+  #       Librecov.Repo.get(Librecov.Project, project_id)
+  #     else
+  #       insert(:project)
+  #     end
 
-    badge = Ecto.build_assoc(project, :badge)
-    Librecov.BadgeManager.changeset(badge, params)
-  end
+  #   badge = Ecto.build_assoc(project, :badge)
+  #   Librecov.BadgeManager.changeset(badge, params)
+  # end
 
-  def make_changeset(model) do
-    model
-  end
+  # def make_changeset(model) do
+  #   model
+  # end
 
   def with_project(build) do
     project = insert(:project)
@@ -146,9 +149,9 @@ defmodule Librecov.Factory do
     %{user | confirmed_at: Timex.now(), password_initialized: true}
   end
 
-  def params_for(factory_name, attrs \\ %{}) do
-    ExMachina.Ecto.params_for(__MODULE__, factory_name, attrs)
-    |> Enum.reject(fn {_key, value} -> is_nil(value) or value == "" end)
-    |> Enum.into(%{})
-  end
+  # def params_for(factory_name, attrs \\ %{}) do
+  #   ExMachina.Ecto.params_for(__MODULE__, factory_name, attrs)
+  #   |> Enum.reject(fn {_key, value} -> is_nil(value) or value == "" end)
+  #   |> Enum.into(%{})
+  # end
 end

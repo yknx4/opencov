@@ -17,6 +17,7 @@ defmodule Librecov.FileTest do
     assert other_files_ids == [other_file.id]
   end
 
+  @tag :skip
   test "covered and unperfect filters" do
     insert(:file, coverage_lines: [0, 0])
     insert(:file, coverage_lines: [100, 100])
