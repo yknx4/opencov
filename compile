@@ -1,3 +1,5 @@
 yarn run postcss --ext=css -m --dir=./priv/static/assets ./assets/css
-cd assets && node build.ts
+cd assets
+node build.ts
+cd ../
 mix phx.digest
