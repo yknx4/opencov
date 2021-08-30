@@ -39,13 +39,13 @@ defmodule Librecov.Factory do
   def job_factory do
     %Librecov.Job{
       job_number: sequence(:job_number, & &1),
-      build: build(:build)
+      build: fn -> build(:build) end
     }
   end
 
   def file_factory do
     %Librecov.File{
-      job: build(:job),
+      job: fn -> build(:job) end,
       name: sequence(:name, &"file-#{&1}"),
       source: "return 0",
       coverage_lines: []
@@ -54,7 +54,7 @@ defmodule Librecov.Factory do
 
   def badge_factory do
     %Librecov.Badge{
-      project: build(:project),
+      project: fn -> build(:project) end,
       coverage: 50.0,
       image: "encoded_image",
       format: to_string(Librecov.Badge.default_format())
