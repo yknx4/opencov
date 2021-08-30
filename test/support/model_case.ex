@@ -20,6 +20,7 @@ defmodule Librecov.ModelCase do
       import Ecto.Query, only: [from: 2]
       import Librecov.Factory
       import Librecov.ModelCase
+      alias Ecto.Changeset
     end
   end
 

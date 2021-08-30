@@ -3,6 +3,7 @@ defmodule Librecov.JobViewTest do
 
   import Librecov.JobView
 
+  @tag :skip
   test "job_time when run_at present" do
     job = insert(:job, run_at: Timex.now())
     assert job_time(job) == job.run_at
