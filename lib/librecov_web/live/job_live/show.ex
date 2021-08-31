@@ -1,11 +1,9 @@
 defmodule Librecov.JobLive.Show do
   use Librecov.Web, :live_view
-  import Librecov.CommonView
 
   alias Librecov.Job
   alias Librecov.FileService
   alias Librecov.Repo
-  alias Surface.Components.LiveRedirect
 
   @impl true
   def mount(_params, _session, socket) do

@@ -31,15 +31,15 @@ defmodule Librecov.CommonViewTest do
 
   test "repository_class" do
     assert repository_class(build(:project, base_url: "https://github.com/tuvistavie/librecov")) ==
-             "fa-github-alt"
+             "github-alt"
 
     assert repository_class(
              build(:project, base_url: "https://bitbucket.org/tuvistavie/librecov")
            ) ==
-             "fas-bitbucket"
+             "bitbucket"
 
     assert repository_class(build(:project, base_url: "https://gitlab.com/tuvistavie/librecov")) ==
-             "fas-database"
+             "database"
   end
 
   test "commit_link" do

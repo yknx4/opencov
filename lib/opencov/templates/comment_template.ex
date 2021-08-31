@@ -38,7 +38,7 @@ defmodule Librecov.Templates.CommentTemplate do
 
     cov_dif = coverage_diff(coverage, real_previous_coverage)
 
-    report_url = Routes.build_url(Endpoint, :show, build_id)
+    report_url = Routes.build_show_url(Endpoint, :show, build_id)
 
     header = """
     # [Librecov](#{report_url}) Report
@@ -127,7 +127,7 @@ defmodule Librecov.Templates.CommentTemplate do
        ) do
     cov_diff = coverage_diff(coverage, previous_coverage)
 
-    "| [#{filename}](#{Routes.file_url(Endpoint, :show, file_id)}) | `#{coverage |> format_coverage()} <#{cov_diff |> format_coverage()}> (#{cov_diff |> file_icon()})` | #{cov_diff |> diff_emoji()} |"
+    "| [#{filename}](#{Routes.file_show_url(Endpoint, :show, file_id)}) | `#{coverage |> format_coverage()} <#{cov_diff |> format_coverage()}> (#{cov_diff |> file_icon()})` | #{cov_diff |> diff_emoji()} |"
   end
 
   defp diff_emoji(diff) when is_zero(diff), do: ""

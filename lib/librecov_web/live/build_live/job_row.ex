@@ -3,7 +3,6 @@ defmodule Librecov.RepositoryLive.JobRow do
   alias Librecov.Router.Helpers, as: Routes
 
   import Librecov.CommonView
-  alias Surface.Components.Link
   alias Librecov.RepositoryLive.CoverageDiff
   alias Surface.Components.LiveRedirect
 
@@ -30,7 +29,7 @@ defmodule Librecov.RepositoryLive.JobRow do
         </span>
       </td>
       <td class="text-start d-none d-sm-table-cell">
-        {@job |> Librecov.JobView.job_time() |> human_time_ago}
+        {@job.run_at |> human_time_ago}
       </td>
       <td class="text-center d-none d-sm-table-cell">
         {@job.files_count}
