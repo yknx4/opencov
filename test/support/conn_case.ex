@@ -26,6 +26,8 @@ defmodule Librecov.ConnCase do
       import Librecov.Factory
 
       import Librecov.Router.Helpers
+      alias Librecov.Router.Helpers, as: Routes
+      import Librecov.Authentication
 
       # The default endpoint for testing
       @endpoint Librecov.Endpoint

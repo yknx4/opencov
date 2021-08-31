@@ -93,10 +93,10 @@ defmodule Librecov.Router do
     get("/profile/password/edit", ProfileController, :edit_password)
     put("/profile/password", ProfileController, :update_password)
 
-    resources("/builds", BuildController, only: [:show])
-    resources("/files", FileController, only: [:show])
+    live "/builds/:id", BuildLive.Show, :show
+    live "/files/:id", FileLive.Show, :show
 
-    resources("/jobs", JobController, only: [:show])
+    live "/jobs/:id", JobLive.Show, :show
   end
 
   scope "/old_admin", Librecov.Admin, as: :admin do

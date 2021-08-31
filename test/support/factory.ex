@@ -1,6 +1,17 @@
 defmodule Librecov.Factory do
   use ExMachina.Ecto, repo: Librecov.Repo
 
+  def authorization_factory do
+    %Librecov.User.Authorization{
+      expires_at: Timex.now() |> Timex.to_unix() |> Kernel.+(120),
+      provider: ["github"] |> Enum.random(),
+      refresh_token: sequence(:refresh_token, &"refresh_token_#{&1}"),
+      token: sequence(:token, &"my_secret_token_#{&1}"),
+      uid: UUID.uuid1(),
+      user: fn -> build(:user) end
+    }
+  end
+
   def project_factory do
     %Librecov.Project{
       name: sequence(:name, &"name/#{&1}"),

@@ -26,7 +26,8 @@ config :phoenix, :generators,
 config :phoenix, :json_library, Jason
 
 config :scrivener_html,
-  routes_helper: Librecov.Router.Helpers
+  routes_helper: Librecov.Router.Helpers,
+  view_style: :bootstrap
 
 config :librecov, PlugBasicAuth, enable: false
 
