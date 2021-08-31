@@ -46,9 +46,9 @@ defmodule Librecov.CommonView do
     url = project.base_url
 
     cond do
-      String.contains?(url, "github.com") -> "fa-github-alt"
-      String.contains?(url, "bitbucket.org") -> "fas-bitbucket"
-      true -> "fas-database"
+      String.contains?(url, "github.com") -> "github-alt"
+      String.contains?(url, "bitbucket.org") -> "bitbucket"
+      true -> "database"
     end
   end
 

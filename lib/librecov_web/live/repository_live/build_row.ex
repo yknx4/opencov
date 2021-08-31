@@ -13,7 +13,7 @@ defmodule Librecov.RepositoryLive.BuildRow do
     <tr>
       <td>
         <span class="fw-semibold">
-          <Link label={"##{@build.build_number}"} to={Routes.build_path(@socket, :show, @build.id)} />
+          <Link label={"##{@build.build_number}"} to={Routes.build_show_path(@socket, :show, @build.id)} />
         </span>
       </td>
       <td class="d-none d-sm-table-cell">
