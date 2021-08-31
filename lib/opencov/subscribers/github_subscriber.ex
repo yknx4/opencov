@@ -39,15 +39,6 @@ defmodule Librecov.Subscriber.GithubSubscriber do
     end)
   end
 
-  # def process(%Event{topic: :pull_request_synced, data: payload}) do
-  #   with %{"after" => commit, "repository" => repo} <- payload,
-  #        %{"name" => repo, "owner" => %{"login" => owner}} <- repo do
-  #     Auth.with_auth_data(owner, repo, fn auth ->
-  #       Checks.create_check(auth, commit)
-  #     end)
-  #   end
-  # end
-
   def process(%Event{topic: :check_suite_requested, data: payload}) do
     Auth.with_auth_data(payload, fn auth ->
       Checks.create_check(auth, payload["check_suite"]["head_sha"])
