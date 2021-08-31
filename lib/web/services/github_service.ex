@@ -18,7 +18,7 @@ defmodule Librecov.GithubService do
     Logger.debug("Unhandled event: #{event}")
   end
 
-  defp handle_check_suite("requested", payload) do
+  defp handle_check_suite(action, payload) when action in ["rerequested", "requested"] do
     %Event{id: UUID.uuid1(), topic: :check_suite_requested, data: payload} |> EventBus.notify()
   end
 

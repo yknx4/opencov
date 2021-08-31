@@ -63,8 +63,8 @@ defmodule Librecov.Services.Github.Checks do
              }
            ) do
       Logger.info("Finished check of commit #{commit} with diff: #{cov_dif} coverage: #{cov}.")
-      Logger.info("#{commit_check |> Map.from_struct() |> Jason.encode!(pretty: true)}")
-      Logger.info("#{diff_check |> Map.from_struct() |> Jason.encode!(pretty: true)}")
+      Logger.info("#{commit_check |> inspect() |> Jason.encode!(pretty: true)}")
+      Logger.info("#{diff_check |> inspect() |> Jason.encode!(pretty: true)}")
       {:ok, [commit_check, diff_check]}
     end
   end
