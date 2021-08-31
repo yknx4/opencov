@@ -5,6 +5,7 @@ defmodule Librecov.RepositoryLive.JobRow do
   import Librecov.CommonView
   alias Surface.Components.Link
   alias Librecov.RepositoryLive.CoverageDiff
+  alias Surface.Components.LiveRedirect
 
   prop job, :struct, required: true
 
@@ -13,7 +14,7 @@ defmodule Librecov.RepositoryLive.JobRow do
     <tr>
       <td class="text-center fs-sm">
         <span class="fw-semibold">
-          <Link label={"##{@job.job_number}"} to={Routes.job_show_path(@socket, :show, @job)} />
+          <LiveRedirect label={"##{@job.job_number}"} to={Routes.job_show_path(@socket, :show, @job)} />
         </span>
       </td>
       <td class="text-center fs-sm">

@@ -5,6 +5,7 @@ defmodule Librecov.RepositoryLive.RepositoryCard do
   import Librecov.CommonView
   alias Librecov.Project
   alias Surface.Components.Link
+  alias Surface.Components.LiveRedirect
 
   def project_for_repo(projects, repository) do
     Enum.find(
@@ -35,7 +36,7 @@ defmodule Librecov.RepositoryLive.RepositoryCard do
       <div class="block-header block-header-default">
         <h3 class="block-title">
           {#if !is_nil(project.id)}
-            <Link
+            <LiveRedirect
               label={@repository.full_name}
               to={Routes.repository_show_path(@socket, :show, @repository.owner.login, @repository.name)}
             />
@@ -60,7 +61,7 @@ defmodule Librecov.RepositoryLive.RepositoryCard do
         {/if}
         {#if !is_nil(latest_build) && !is_nil(latest_build.commit_message)}
           <p class="card-text text-muted">
-            <Link
+            <LiveRedirect
               class="text-muted"
               label={latest_build.commit_message}
               to={Routes.build_show_path(@socket, :show, latest_build)}

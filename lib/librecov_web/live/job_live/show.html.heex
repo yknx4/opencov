@@ -4,8 +4,8 @@
     <div class="col-lg-12 py-4">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><%= link @job.build.project.name, to: ViewHelper.project_path(@socket, :show, @job.build.project) %></li>
-          <li class="breadcrumb-item"><%= link "Build ##{@job.build.build_number}", to: Routes.build_show_path(@socket, :show, @job.build) %></li>
+          <li class="breadcrumb-item"><%= live_redirect @job.build.project.name, to: ViewHelper.project_path(@socket, :show, @job.build.project) %></li>
+          <li class="breadcrumb-item"><%= live_redirect "Build ##{@job.build.build_number}", to: Routes.build_show_path(@socket, :show, @job.build) %></li>
           <li class="breadcrumb-item active" aria-current="page">Job #<%= @job.job_number %></li>
         </ol>
       </nav>
