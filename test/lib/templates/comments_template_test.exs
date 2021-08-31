@@ -17,7 +17,7 @@ defmodule Librecov.Templates.CommentTemplateTest do
   test "barebones template #1" do
     template =
       CommentTemplate.coverage_message(@base_build, %{
-        head: %{user: %{login: "github"}},
+        user: %{login: "github"},
         base: %{ref: "potato", sha: "chettos"}
       })
 
@@ -28,7 +28,7 @@ defmodule Librecov.Templates.CommentTemplateTest do
   test "barebones template #2" do
     template =
       CommentTemplate.coverage_message(%Build{@base_build | coverage: 50.1234}, %{
-        head: %{user: %{login: "github"}},
+        user: %{login: "github"},
         base: %{ref: "potato", sha: "chettos"}
       })
 
@@ -41,7 +41,7 @@ defmodule Librecov.Templates.CommentTemplateTest do
       CommentTemplate.coverage_message(
         %Build{@base_build | coverage: 50.1234, previous_coverage: 30.2345},
         %{
-          head: %{user: %{login: "github"}},
+          user: %{login: "github"},
           base: %{ref: "potato", sha: "chettos"}
         }
       )
