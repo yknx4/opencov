@@ -2,6 +2,7 @@ defmodule Librecov.FileLive.List do
   use Surface.Component
   import Librecov.CommonView
   alias Surface.Components.Link
+  alias Surface.Components.LivePatch
   alias Librecov.Common.Icon
   alias Librecov.RepositoryLive.CoverageDiff
   alias Librecov.Router.Helpers, as: Routes
@@ -53,13 +54,13 @@ defmodule Librecov.FileLive.List do
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-ecom-filters" style="">
               {#for {k, v} <- raw_filters()}
                 {#if Enum.any?(@filters, &(&1 == k))}
-                  <Link
+                  <LivePatch
                     class="dropdown-item d-flex align-items-center justify-content-between"
                     label={v}
                     to={apply(@path_fn, @path_args ++ [[{:filters, @filters -- [k]} | order_args]])}
                   />
                 {#else}
-                  <Link
+                  <LivePatch
                     class="dropdown-item d-flex align-items-center justify-content-between"
                     label={v}
                     to={apply(@path_fn, @path_args ++ [[{:filters, [k | @filters]} | order_args]])}
@@ -78,13 +79,13 @@ defmodule Librecov.FileLive.List do
               <tr>
                 {#for {k, v} <- %{"coverage" => "Coverage", "diff" => "Diff", "name" => "Name"}}
                   <th class="d-none d-sm-table-cell text-center">
-                    <Link to={apply(
+                    <LivePatch to={apply(
                       @path_fn,
                       @path_args ++ [[filters: @filters, order_field: k, order_direction: row_order(@order, k)]]
                     )}>
                       <span>{v}</span>
                       <Icon family="fas" icon={"sort-#{elem(@order, 1) |> sort_icon}"} :if={elem(@order, 0) == k} />
-                    </Link>
+                    </LivePatch>
                   </th>
                 {/for}
               </tr>
