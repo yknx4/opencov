@@ -29,14 +29,9 @@ defmodule Librecov.FileController do
           raw_content
         )
 
-      file_json =
-        file
-        |> Jason.encode!()
-
       content_to_render = Highlight.parse(file)
 
-      {:ok,
-       render(conn, "show.html", file: file, file_json: file_json, content: content_to_render)}
+      {:ok, render(conn, "show.html", file: file, content: content_to_render)}
     end)
   end
 end
