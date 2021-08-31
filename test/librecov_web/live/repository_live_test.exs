@@ -316,10 +316,18 @@ defmodule Librecov.RepositoryLiveTest do
     setup [:create_repository]
 
     test "displays repository", %{conn: conn, user: user} do
-      p = insert(:project, id: 1337, repo_id: "github_1296269", name: "octocat/Hello-World")
+      p =
+        insert(:project,
+          id: 1337,
+          token: "p4ssw0rd",
+          repo_id: "github_1296269",
+          name: "octocat/Hello-World",
+          base_url: "https://github.com/octocat/Hello-World"
+        )
 
       insert(:build,
         id: 443,
+        build_number: "1234",
         coverage: 99.9,
         previous_coverage: 50.1,
         completed: true,

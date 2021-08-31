@@ -5,6 +5,7 @@ defmodule Librecov.DataTest do
   alias Librecov.Data
 
   setup do
+    Application.put_env(:tesla, :adapter, Tesla.Adapter.Ibrowse)
     ExVCR.Config.cassette_library_dir("fixture/vcr_cassettes")
     :ok
   end
