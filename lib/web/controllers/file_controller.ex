@@ -25,7 +25,7 @@ defmodule Librecov.FileController do
       file =
         file
         |> Map.put(
-          "source",
+          :source,
           raw_content
         )
 
