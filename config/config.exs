@@ -59,7 +59,8 @@ config :event_bus,
     :pull_request_synced,
     :inserted,
     :updated,
-    :build_finished
+    :build_finished,
+    :check_suite_requested
   ]
 
 config :ueberauth, Ueberauth,

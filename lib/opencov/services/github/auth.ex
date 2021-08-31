@@ -18,6 +18,18 @@ defmodule Librecov.Services.Github.Auth do
 
   def with_auth_data(nil, _), do: {:error, :nil_input}
 
+  def with_auth_data(
+        %{
+          "installation" => %{"id" => installation_id},
+          "repository" => %{"name" => repo, "owner" => %{"login" => owner}}
+        },
+        block
+      ) do
+    with {:ok, token} <- login_token_for(:installation_id, installation_id) do
+      apply(block, [%AuthData{token: token, owner: owner, repo: repo}])
+    end
+  end
+
   def with_auth_data(%Project{} = project, block) do
     with {owner, repo} <- Project.name_and_owner(project) do
       with_auth_data(owner, repo, block)
@@ -51,6 +63,15 @@ defmodule Librecov.Services.Github.Auth do
 
     {:ok, jwt, _} = Joken.generate_and_sign(token_config, %{}, signer)
     jwt
+  end
+
+  def login_token_for(:installation_id, installation_id) do
+    with {:ok, token} <-
+           app_token()
+           |> Connection.new()
+           |> Apps.apps_create_installation_access_token(installation_id) do
+      {:ok, token.token}
+    end
   end
 
   def login_token(login) do

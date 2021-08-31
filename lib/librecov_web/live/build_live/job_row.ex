@@ -29,7 +29,7 @@ defmodule Librecov.RepositoryLive.JobRow do
         </span>
       </td>
       <td class="text-start d-none d-sm-table-cell">
-        {@job.run_at |> human_time_ago}
+        {(@job.run_at || @job.updated_at) |> human_time_ago}
       </td>
       <td class="text-center d-none d-sm-table-cell">
         {@job.files_count}
