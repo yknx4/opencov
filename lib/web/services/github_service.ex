@@ -10,8 +10,20 @@ defmodule Librecov.GithubService do
     install(payload["repository"])
   end
 
+  def handle("check_suite", payload) do
+    handle_check_suite(payload["action"], payload)
+  end
+
   def handle(event, _payload) do
     Logger.debug("Unhandled event: #{event}")
+  end
+
+  defp handle_check_suite("requested", payload) do
+    %Event{id: UUID.uuid1(), topic: :check_suite_requested, data: payload} |> EventBus.notify()
+  end
+
+  defp handle_check_suite(action, _payload) do
+    Logger.debug("Unhandled action: #{action}")
   end
 
   def handle_pr("synchronize", payload) do
