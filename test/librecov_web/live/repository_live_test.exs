@@ -334,7 +334,7 @@ defmodule Librecov.RepositoryLiveTest do
         commit_sha: "",
         commit_message: "oie shi",
         branch: "main",
-        inserted_at: Timex.now() |> Timex.beginning_of_day() |> Timex.to_datetime(),
+        inserted_at: Timex.now() |> Timex.shift(hours: -18) |> Timex.to_datetime(),
         project: p
       )
 
