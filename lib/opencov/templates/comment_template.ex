@@ -23,7 +23,7 @@ defmodule Librecov.Templates.CommentTemplate do
           }
         } = build,
         %{
-          head: %{user: %{login: username}},
+          user: %{login: username},
           base: %{ref: base_branch, sha: base_commit}
         }
       ) do
