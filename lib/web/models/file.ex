@@ -40,16 +40,12 @@ defmodule Librecov.File do
   end
 
   def sort_by(query, param, order) do
-    order =
-      if __schema__(:type, param) == :string,
-        do: order,
-        else: reverse_order(order)
+    query = query |> order_by([f], [{^order, field(f, ^param)}])
 
-    query |> order_by([f], [{^order, field(f, ^param)}])
+    if __schema__(:type, param) == :string,
+      do: query,
+      else: reverse_order(query)
   end
-
-  # defp reverse_order(:asc), do: :desc
-  # defp reverse_order(:desc), do: :asc
 
   def for_job(query \\ Librecov.File, job)
 

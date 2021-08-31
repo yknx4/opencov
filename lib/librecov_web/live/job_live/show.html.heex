@@ -1,0 +1,22 @@
+<div class="content">
+  <!-- Quick Overview -->
+  <div class="row">
+    <div class="col-lg-12 py-4">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><%= link @job.build.project.name, to: ViewHelper.project_path(@socket, :show, @job.build.project) %></li>
+          <li class="breadcrumb-item"><%= link "Build ##{@job.build.build_number}", to: Routes.build_show_path(@socket, :show, @job.build) %></li>
+          <li class="breadcrumb-item active" aria-current="page">Job #<%= @job.job_number %></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <!-- END Quick Overview -->
+
+  <%= live_component Librecov.FileLive.List, paginator: @paginator,
+           files: @files,
+           order: @order,
+           path_fn: &Librecov.Router.Helpers.job_show_path/4,
+           path_args: [@socket, :show, @job] %>
+
+</div>

@@ -96,7 +96,7 @@ defmodule Librecov.Router do
     live "/builds/:id", BuildLive.Show, :show
     resources("/files", FileController, only: [:show])
 
-    resources("/jobs", JobController, only: [:show])
+    live "/jobs/:id", JobLive.Show, :show
   end
 
   scope "/old_admin", Librecov.Admin, as: :admin do

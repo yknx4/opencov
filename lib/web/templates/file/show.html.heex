@@ -8,7 +8,7 @@
     </span>
     <span class="separator">.</span>
     <span class="job-number">
-      <%= link "#{@file.job.job_number}", to: Routes.job_path(@conn, :show, @file.job) %>
+      <%= link "#{@file.job.job_number}", to: Routes.job_show_path(@conn, :show, @file.job) %>
     </span>
     <span class="separator">></span>
     <span class="filename">

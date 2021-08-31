@@ -13,7 +13,7 @@ defmodule Librecov.RepositoryLive.JobRow do
     <tr>
       <td class="text-center fs-sm">
         <span class="fw-semibold">
-          <Link label={"##{@job.job_number}"} to={Routes.job_path(@socket, :show, @job)} />
+          <Link label={"##{@job.job_number}"} to={Routes.job_show_path(@socket, :show, @job)} />
         </span>
       </td>
       <td class="text-center fs-sm">
