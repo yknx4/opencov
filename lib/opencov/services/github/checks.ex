@@ -68,6 +68,12 @@ defmodule Librecov.Services.Github.Checks do
   end
 
   def create_check(%AuthData{token: token, owner: owner, repo: repo}, commit) do
+    Logger.info("""
+    create_check
+    Repo: #{owner}/#{repo}
+    Commit: #{commit}
+    """)
+
     token
     |> Connection.new()
     |> Checks.checks_create(owner, repo,
