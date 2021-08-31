@@ -11,6 +11,7 @@ defmodule LibrecovWeb.JobLiveTest do
   describe "Show" do
     setup [:create_job]
 
+    @tag :skip
     test "displays job", %{conn: conn, job: job} do
       {:ok, _show_live, html} = live(conn, Routes.job_show_path(conn, :show, job))
 

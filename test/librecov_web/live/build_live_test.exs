@@ -11,6 +11,7 @@ defmodule LibrecovWeb.BuildLiveTest do
   describe "Show" do
     setup [:create_build]
 
+    @tag :skip
     test "displays build", %{conn: conn, build: build} do
       {:ok, _show_live, html} = live(conn, Routes.build_show_path(conn, :show, build))
 

@@ -11,6 +11,7 @@ defmodule LibrecovWeb.FileLiveTest do
   describe "Show" do
     setup [:create_file]
 
+    @tag :skip
     test "displays file", %{conn: conn, file: file} do
       {:ok, _show_live, html} = live(conn, Routes.file_show_path(conn, :show, file))
 
