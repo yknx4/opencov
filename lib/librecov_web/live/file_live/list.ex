@@ -101,7 +101,7 @@ defmodule Librecov.FileLive.List do
                   </td>
 
                   <td class="text-center d-none d-xl-table-cell fs-sm">
-                    <Link class="fw-semibold" label={file.name} to={Routes.file_path(@socket, :show, file)} />
+                    <Link class="fw-semibold" label={file.name} to={Routes.file_show_path(@socket, :show, file)} />
                   </td>
                 </tr>
               {/for}

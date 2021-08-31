@@ -94,7 +94,7 @@ defmodule Librecov.Router do
     put("/profile/password", ProfileController, :update_password)
 
     live "/builds/:id", BuildLive.Show, :show
-    resources("/files", FileController, only: [:show])
+    live "/files/:id", FileLive.Show, :show
 
     live "/jobs/:id", JobLive.Show, :show
   end

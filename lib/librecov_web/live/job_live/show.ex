@@ -5,6 +5,7 @@ defmodule Librecov.JobLive.Show do
   alias Librecov.Job
   alias Librecov.FileService
   alias Librecov.Repo
+  alias Surface.Components.LiveRedirect
 
   @impl true
   def mount(_params, _session, socket) do
