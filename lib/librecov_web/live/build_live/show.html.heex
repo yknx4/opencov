@@ -5,7 +5,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><%= link @build.project.name, to: ViewHelper.project_path(@socket, :show, @build.project) %></li>
-          <li class="breadcrumb-item active" aria-current="page">#<%= @build.build_number %></li>
+          <li class="breadcrumb-item active" aria-current="page">Build #<%= @build.build_number %></li>
         </ol>
       </nav>
     </div>

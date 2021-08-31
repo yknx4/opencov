@@ -6,7 +6,7 @@ defmodule Librecov.Common.Icon do
 
   def render(assigns) do
     ~F"""
-      <i class={"#{@family} fa-#{@icon}"} />
+    <i class={"#{@family} fa-#{@icon}"} />
     """
   end
 end

@@ -4,7 +4,7 @@
     <%= link @file.job.build.project.name, to: ViewHelper.project_path(@conn, :show, @file.job.build.project) %>
     <span class="separator">></span>
     <span class="build-number">
-      <%= link "#{@file.job.build.build_number}", to: Routes.build_path(@conn, :show, @file.job.build) %>
+      <%= link "#{@file.job.build.build_number}", to: Routes.build_show_path(@conn, :show, @file.job.build) %>
     </span>
     <span class="separator">.</span>
     <span class="job-number">

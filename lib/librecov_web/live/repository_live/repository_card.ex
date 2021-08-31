@@ -60,7 +60,11 @@ defmodule Librecov.RepositoryLive.RepositoryCard do
         {/if}
         {#if !is_nil(latest_build) && !is_nil(latest_build.commit_message)}
           <p class="card-text text-muted">
-            <Link class="text-muted" label={latest_build.commit_message} to={Routes.build_path(@socket, :show, latest_build)} />
+            <Link
+              class="text-muted"
+              label={latest_build.commit_message}
+              to={Routes.build_show_path(@socket, :show, latest_build)}
+            />
             {#if !is_nil(latest_build.branch)}
               on branch <span class="font-italic">{latest_build.branch}</span>
             {/if}
