@@ -8,6 +8,7 @@ defmodule Librecov.FileLive.List do
   import Scrivener.HTML
   prop paginator, :struct, required: true
   prop files, :list, required: true
+  prop filters, :list, required: false
   prop order, :tuple, required: true
   prop path_fn, :fun, required: true
   prop path_args, :list, required: true
@@ -21,14 +22,14 @@ defmodule Librecov.FileLive.List do
     }
   end
 
-  def filters, do: raw_filters() |> Map.keys()
-
   defp row_order(order, k) do
     if elem(order, 0) == k && elem(order, 1) == "desc", do: "asc", else: "desc"
   end
 
   defp sort_icon("desc"), do: "down"
+  defp sort_icon(:desc), do: "down"
   defp sort_icon("asc"), do: "up"
+  defp sort_icon(:asc), do: "up"
 
   def render(assigns) do
     order_args = [order_field: elem(assigns.order, 0), order_direction: elem(assigns.order, 1)]
@@ -51,17 +52,17 @@ defmodule Librecov.FileLive.List do
             </button>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-ecom-filters" style="">
               {#for {k, v} <- raw_filters()}
-                {#if Enum.any?(filters(), &(&1 == k))}
+                {#if Enum.any?(@filters, &(&1 == k))}
                   <Link
                     class="dropdown-item d-flex align-items-center justify-content-between"
                     label={v}
-                    to={apply(@path_fn, @path_args ++ [[{:filters, filters() -- [k]} | order_args]])}
+                    to={apply(@path_fn, @path_args ++ [[{:filters, @filters -- [k]} | order_args]])}
                   />
                 {#else}
                   <Link
                     class="dropdown-item d-flex align-items-center justify-content-between"
                     label={v}
-                    to={apply(@path_fn, @path_args ++ [[{:filters, [k | filters()]} | order_args]])}
+                    to={apply(@path_fn, @path_args ++ [[{:filters, [k | @filters]} | order_args]])}
                   />
                 {/if}
               {/for}
@@ -79,7 +80,7 @@ defmodule Librecov.FileLive.List do
                   <th class="d-none d-sm-table-cell text-center">
                     <Link to={apply(
                       @path_fn,
-                      @path_args ++ [[filters: filters(), order_field: k, order_direction: row_order(@order, k)]]
+                      @path_args ++ [[filters: @filters, order_field: k, order_direction: row_order(@order, k)]]
                     )}>
                       <span>{v}</span>
                       <Icon family="fas" icon={"sort-#{elem(@order, 1) |> sort_icon}"} :if={elem(@order, 0) == k} />
@@ -116,7 +117,7 @@ defmodule Librecov.FileLive.List do
             Enum.drop(@path_args, 2),
             path: @path_fn,
             action: Enum.at(@path_args, 1),
-            filters: filters(),
+            filters: @filters,
             order_field: elem(@order, 0),
             order_direction: elem(@order, 1)
           )}
