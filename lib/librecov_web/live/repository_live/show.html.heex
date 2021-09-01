@@ -18,6 +18,7 @@
         </div>
         <div class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3">
           <span class="d-inline-block btn-group">
+            <%= if @repository.permissions.admin == true do %>
             <div class="btn-group">
               <button class="btn btn-primary px-4 py-2 dropdown-toggle" type="button" id="dropdownMenuClickable" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
                 <i class="fas fa-key me-1 opacity-50"></i> Show Token
@@ -27,6 +28,7 @@
                 <li><pre><code><span class="dropdown-item"><%= @project.token %></span></code></pre></li>
               </ul>
             </div>
+            <% end %>
             <div class="btn-group">
               <button class="btn btn-primary px-4 py-2 dropdown-toggle" type="button" id="dropdownMenuClickable2" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
                 <i class="far fa-image me-1 opacity-50"></i> Get Badge
