@@ -6,6 +6,7 @@ defmodule Librecov.RepositoryLive.BuildRow do
   alias Surface.Components.Link
   alias Librecov.RepositoryLive.CoverageDiff
   alias Surface.Components.LiveRedirect
+  alias Librecov.Common.Icon
 
   prop build, :struct, required: true
 
@@ -36,7 +37,7 @@ defmodule Librecov.RepositoryLive.BuildRow do
         <span class="fw-semibold">
           {@build.commit_message}
           {#if @build.commit_sha}
-            <Link to={commit_link(@build.project, @build.commit_sha)}><i class={"fab #{repository_class(@build.project)}"} /></Link>
+            <Link to={commit_link(@build.project, @build.commit_sha)}><Icon family="fab" icon={repository_class(@build.project)} /></Link>
           {/if}
         </span>
       </td>
