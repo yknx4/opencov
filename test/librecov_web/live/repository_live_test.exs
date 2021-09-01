@@ -106,7 +106,7 @@ defmodule Librecov.RepositoryLiveTest do
       created_at: "2011-01-26T19:01:12Z",
       updated_at: "2011-01-26T19:14:43Z",
       permissions: %{
-        admin: false,
+        admin: true,
         push: false,
         pull: true
       },
@@ -233,7 +233,7 @@ defmodule Librecov.RepositoryLiveTest do
         created_at: "2011-01-26T19:01:12Z",
         updated_at: "2011-01-26T19:14:43Z",
         permissions: %{
-          admin: false,
+          admin: true,
           push: false,
           pull: true
         },
