@@ -13,9 +13,7 @@
   </h2>
   <div class="row">
     <%= for repository <- @repositories do %>
-      <div class="col-md-6">
         <%= live_component Librecov.RepositoryLive.RepositoryCard, repository: repository, projects: @projects %>
-      </div>
     <% end %>
   </div>
 </div>

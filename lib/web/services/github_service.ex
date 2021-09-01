@@ -14,6 +14,10 @@ defmodule Librecov.GithubService do
     handle_check_suite(payload["action"], payload)
   end
 
+  def handle("installation", payload) do
+    handle_installation(payload["action"], payload)
+  end
+
   def handle(event, _payload) do
     Logger.debug("Unhandled event: #{event}")
   end
@@ -34,6 +38,17 @@ defmodule Librecov.GithubService do
     Logger.warn("Unhandled pr event: #{event}")
   end
 
+  def handle_installation("created", payload) do
+    repos = payload["repositories"] || []
+
+    repos
+    |> Enum.each(&install/1)
+  end
+
+  def handle_installation(action, _payload) do
+    Logger.warn("Unhandled installation action: #{action}")
+  end
+
   defp install(%{"id" => repo_id, "full_name" => name, "html_url" => base_url}) do
     with {:ok, %Project{}} <-
            Repo.insert(
@@ -48,4 +63,7 @@ defmodule Librecov.GithubService do
       Logger.info("Installed Repo #{name}")
     end
   end
+
+  defp install(%{"id" => _, "full_name" => name} = data),
+    do: install(%{data | "html_url" => "https://github.com/" <> name})
 end

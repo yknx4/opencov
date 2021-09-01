@@ -28,7 +28,7 @@ defmodule Librecov.Data do
 
   """
   def list_repositories(%{provider: "github", token: token, refresh_token: _refresh_token}) do
-    Repos.available_repos(token, sort: "pushed")
+    Repos.available_repos(token, sort: "pushed", per_page: 100)
   end
 
   @doc """
