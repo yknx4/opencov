@@ -61,8 +61,6 @@ defmodule Librecov.Services.Github.Comments do
     existing_message =
       messages |> Enum.find(fn m -> m.user.login == "#{github_app_name()}[bot]" end)
 
-    IO.inspect(existing_message)
-
     {:ok, %{id: id} = comment} =
       if is_nil(existing_message) do
         conn
