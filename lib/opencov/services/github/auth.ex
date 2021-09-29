@@ -1,4 +1,5 @@
 defmodule Librecov.Services.Github.Auth do
+  import Librecov.Services.Github.Config
   alias ExOctocat.Connection
   alias ExOctocat.Api.Apps
   alias ExOctocat.Model.Installation
@@ -102,12 +103,4 @@ defmodule Librecov.Services.Github.Auth do
     )
     |> OAuth2.Client.put_serializer("application/json", Jason)
   end
-
-  defp config do
-    Application.get_env(:librecov, :github, [])
-  end
-
-  defp github_app_id, do: config() |> Keyword.get(:app_id, "")
-  defp github_client_id, do: config() |> Keyword.get(:client_id, "")
-  defp github_client_secret, do: config() |> Keyword.get(:client_secret, "")
 end

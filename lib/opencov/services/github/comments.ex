@@ -1,5 +1,6 @@
 defmodule Librecov.Services.Github.Comments do
   require Logger
+  import Librecov.Services.Github.Config
   alias ExOctocat.Connection
   alias ExOctocat.Api.Issues
   alias Librecov.Services.Github.PullRequests
@@ -51,10 +52,25 @@ defmodule Librecov.Services.Github.Comments do
       }) do
     Logger.info("Sending pr_message to #{owner}/#{repo}##{issue_number}.")
 
+    conn = token |> Connection.new()
+
+    {:ok, messages} =
+      existing_messages =
+      conn |> Issues.issues_list_comments(owner, repo, issue_number, per_page: 100)
+
+    existing_message =
+      messages |> Enum.find(fn m -> m.user.login == "#{github_app_name()}[bot]" end)
+
     {:ok, %{id: id} = comment} =
-      token
-      |> Connection.new()
-      |> Issues.issues_create_comment(owner, repo, issue_number, body: %{body: pr_message})
+      if is_nil(existing_message) do
+        conn
+        |> Issues.issues_create_comment(owner, repo, issue_number, body: %{body: pr_message})
+      else
+        conn
+        |> Issues.issues_update_comment(owner, repo, existing_message.id,
+          body: %{body: pr_message}
+        )
+      end
 
     Logger.info(
       "Succesfully sent message to #{owner}/#{repo}##{issue_number}. IssueComment##{id}"

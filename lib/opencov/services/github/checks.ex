@@ -1,5 +1,6 @@
 defmodule Librecov.Services.Github.Checks do
   require Logger
+  import Librecov.Services.Github.Config
   alias ExOctocat.Connection
   alias ExOctocat.Api.Checks
   alias Librecov.Build
@@ -40,7 +41,7 @@ defmodule Librecov.Services.Github.Checks do
            conn
            |> Checks.checks_create(owner, repo,
              body: %{
-               name: "LibreCov/commit",
+               name: "#{github_app_name()}/commit",
                head_sha: commit,
                conclusion: "success",
                output: %{
@@ -53,7 +54,7 @@ defmodule Librecov.Services.Github.Checks do
            conn
            |> Checks.checks_create(owner, repo,
              body: %{
-               name: "LibreCov/diff",
+               name: "#{github_app_name()}/diff",
                head_sha: commit,
                conclusion: coverage_diff(coverage, real_previous_coverage) |> diff_conclusion(),
                output: %{
@@ -80,7 +81,7 @@ defmodule Librecov.Services.Github.Checks do
     |> Connection.new()
     |> Checks.checks_create(owner, repo,
       body: %{
-        name: "LibreCov/commit",
+        name: "#{github_app_name()}/commit",
         head_sha: commit,
         output: %{
           title: "Waiting for tests to finish.",

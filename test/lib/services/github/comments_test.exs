@@ -591,6 +591,13 @@ defmodule Librecov.Services.Github.CommentsTests do
         json([], status: 200)
 
       %{
+        method: :get,
+        url: "https://api.github.com/repos/octocat/Hello-World/issues/1347/comments",
+        query: [per_page: 100]
+      } ->
+        json([], status: 200)
+
+      %{
         method: :post,
         url: "https://api.github.com/repos/octocat/Hello-World/issues/1347/comments"
       } ->

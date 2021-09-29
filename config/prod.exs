@@ -66,7 +66,8 @@ config :event_bus,
 config :librecov, :github,
   app_id: System.get_env("GITHUB_APP_ID"),
   client_id: System.get_env("GITHUB_CLIENT_ID"),
-  client_secret: System.get_env("GITHUB_CLIENT_SECRET")
+  client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
+  app_name: System.get_env("GITHUB_APP_NAME")
 
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
   client_id: System.get_env("GITHUB_CLIENT_ID"),
