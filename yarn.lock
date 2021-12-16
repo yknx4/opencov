@@ -2481,8 +2481,10 @@ phoenix@^1.6.0-rc.0:
   resolved "https://registry.yarnpkg.com/phoenix/-/phoenix-1.6.0-rc.0.tgz#ab700f66fa14e7bf38516289eb6b38269de66307"
   integrity sha512-bhwoXqEvm/kbnMS7dqAY4i8+2ngSt2QAvYsYp7rrfNVTWzCZVI5jM9Ov3rOMXQHw/dFbcGFUAYKnZwNVUwJWYQ==
 
-"phoenix_html@file:./deps/phoenix_html":
-  version "3.0.0"
+phoenix_html@3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/phoenix_html/-/phoenix_html-3.0.4.tgz#96d498aa3e4889289d7035d5ed1c893ad5344048"
+  integrity sha512-P+FHH9eyp87Fjcrje/tOmGfdc3boPUhwAHeQytoNeM6rhacLefG3H2mo+cj85K5pTgyngc6FK1z2igqLviSGEg==
 
 phoenix_live_view@^0.16.1:
   version "0.16.1"
