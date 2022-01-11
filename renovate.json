@@ -23,9 +23,9 @@
       "automergeType": "pr",
     },
   ],
-   "reviewers": ["yknx4"],
+  "reviewers": ["yknx4"],
   "bumpVersion": "minor",
-  "commitMessagePrefix": "build(deps):",
+  "includeForks": true,
   "dependencyDashboard": true,
   "lockFileMaintenance": {
     "enabled": true
