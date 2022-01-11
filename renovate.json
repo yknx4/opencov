@@ -2,38 +2,52 @@
   "extends": [
     "config:base"
   ],
-  "commitMessagePrefix": "build(deps):",
   "packageRules": [
     {
-      "matchUpdateTypes": ["patch", "pin", "digest"],
+      "matchUpdateTypes": [
+        "patch",
+        "pin",
+        "digest"
+      ],
       "automerge": true,
       "automergeType": "branch",
     },
     {
-      "matchUpdateTypes": ["minor"],
+      "matchUpdateTypes": [
+        "minor"
+      ],
       "platformAutomerge": true,
       "ignoreTests": false,
       "automerge": true,
       "automergeType": "pr",
     },
     {
-      "matchUpdateTypes": ["major"],
+      "matchUpdateTypes": [
+        "major"
+      ],
       "ignoreTests": false,
       "automerge": false,
       "automergeType": "pr",
     },
   ],
-  "reviewers": ["yknx4"],
+  "reviewers": [
+    "yknx4"
+  ],
   "bumpVersion": "minor",
-  "includeForks": true,
+  "commitMessagePrefix": "build(deps):",
   "dependencyDashboard": true,
+  "includeForks": true,
   "lockFileMaintenance": {
     "enabled": true
   },
   "stabilityDays": 7,
   "vulnerabilityAlerts": {
-    "labels": ["fix"],
-    "assignees": ["@yknx4"]
+    "labels": [
+      "fix"
+    ],
+    "assignees": [
+      "@yknx4"
+    ]
   },
   "rangeStrategy": "replace"
 }
