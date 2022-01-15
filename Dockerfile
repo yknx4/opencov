@@ -1,4 +1,4 @@
-FROM elixir:1.12.2-slim AS build
+FROM elixir:1.13.1-slim AS build
 
 # install build dependencies
 RUN apt update && apt install -y build-essential git
