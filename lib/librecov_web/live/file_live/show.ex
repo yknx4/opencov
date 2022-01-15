@@ -29,8 +29,7 @@ defmodule Librecov.FileLive.Show do
       raw_content =
         file_content.content
         |> String.split("\n")
-        |> Enum.map(&Base.decode64!/1)
-        |> Enum.join("")
+        |> Enum.map_join(&Base.decode64!/1)
 
       file =
         file

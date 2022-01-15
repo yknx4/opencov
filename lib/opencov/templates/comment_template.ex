@@ -106,7 +106,7 @@ defmodule Librecov.Templates.CommentTemplate do
 
     | [Impacted Files](#{report_url}) | Coverage Δ | |
     |---|---|---|
-    #{files |> Enum.map(&files_line/1) |> Enum.join("\n")}
+    #{files |> Enum.map_join("\n", &files_line/1)}
 
     """
   end
