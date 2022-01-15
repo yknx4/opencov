@@ -97,7 +97,7 @@ defmodule Librecov.Mixfile do
       {:floki, ">= 0.30.0", only: :test},
       {:surface, "~> 0.5.0"},
       {:kaffy, "~> 0.9.0"},
-      {:ecto_factory, "~> 0.1.0"},
+      {:ecto_factory, "~> 0.3.0"},
       {:shorter_maps, "~> 2.0"},
       {:mix_test_interactive, "~> 1.0", only: :dev, runtime: false},
       {:exvcr, "~> 0.11", only: :test},
