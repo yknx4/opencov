@@ -24,7 +24,7 @@
     "cz-conventional-changelog": "3.3.0",
     "esbuild": "^0.12.24",
     "esbuild-sass-plugin": "^1.5.2",
-    "eslint": "^7.0.0",
+    "eslint": "^8.0.0",
     "husky": ">=6",
     "less": "^4.1.1",
     "lint-staged": ">=10",
