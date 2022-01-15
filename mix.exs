@@ -63,7 +63,7 @@ defmodule Librecov.Mixfile do
       {:mailman, "~> 0.4"},
       {:eiconv, "~> 1.0"},
       {:scrivener_html, "~> 1.8"},
-      {:excoveralls, "~> 0.10", only: :test},
+      {:excoveralls, "~> 0.14", only: :test},
       {:mock, "~> 0.3", only: :test},
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
