@@ -77,7 +77,7 @@ defmodule Librecov.Mixfile do
       {:phoenix_live_dashboard, "~> 0.5"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:telemetry_metrics, "~> 0.6"},
-      {:telemetry_poller, "~> 0.5"},
+      {:telemetry_poller, "~> 1.0"},
       {:plug_cowboy, "~> 2.5"},
       {:ranch, "~> 1.8", override: true},
       {:meck, "~> 0.9", override: true},
