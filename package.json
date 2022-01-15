@@ -22,7 +22,7 @@
     "@typescript-eslint/parser": "^4.0.0",
     "autoprefixer": "^10.3.2",
     "cz-conventional-changelog": "3.3.0",
-    "esbuild": "^0.12.24",
+    "esbuild": "^0.14.0",
     "esbuild-sass-plugin": "^1.5.2",
     "eslint": "^7.0.0",
     "husky": ">=6",
