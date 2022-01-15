@@ -18,7 +18,7 @@ defmodule Librecov.Parser.Lcov do
 
     SourceFile.cast_and_validate!(%{
       name: lcov_object["file"],
-      source: Range.new(1, total_lines) |> Enum.map(fn _ -> "MISSING" end) |> Enum.join("\n"),
+      source: Range.new(1, total_lines) |> Enum.map_join("\n", fn _ -> "MISSING" end),
       coverage: details_to_coverage(lcov_object["lines"]["details"], total_lines),
       branches: details_to_branches(lcov_object["branches"]["details"])
     })

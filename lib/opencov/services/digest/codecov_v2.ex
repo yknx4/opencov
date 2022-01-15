@@ -55,10 +55,9 @@ defmodule Librecov.Digest.CodecovV2 do
 
         e ->
           raise e
-                |> Enum.map(fn e ->
+                |> Enum.map_join("\n\n", fn e ->
                   OpenApiSpex.path_to_string(e) + "\n" + OpenApiSpex.error_message(e)
                 end)
-                |> Enum.join("\n\n")
       end
     end
   end
@@ -77,10 +76,9 @@ defmodule Librecov.Digest.CodecovV2 do
 
         e ->
           raise e
-                |> Enum.map(fn e ->
+                |> Enum.map_join("\n\n", fn e ->
                   OpenApiSpex.path_to_string(e) + "\n" + OpenApiSpex.error_message(e)
                 end)
-                |> Enum.join("\n\n")
       end
     end
   end

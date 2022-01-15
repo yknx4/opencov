@@ -54,14 +54,11 @@ defmodule Librecov.Services.Authorizations do
     if is_nil(authorization) do
       nil
     else
-      with {:ok, updated_authorization} <-
-             Authorization.changeset(
-               authorization,
-               %{provider: provider, uid: uid} |> Map.merge(credentials |> Map.from_struct())
-             )
-             |> Repo.update() do
-        {:ok, updated_authorization}
-      end
+      Authorization.changeset(
+        authorization,
+        %{provider: provider, uid: uid} |> Map.merge(credentials |> Map.from_struct())
+      )
+      |> Repo.update()
     end
   end
 end
