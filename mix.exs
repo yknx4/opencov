@@ -79,7 +79,7 @@ defmodule Librecov.Mixfile do
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 0.5"},
       {:plug_cowboy, "~> 2.5"},
-      {:ranch, "~> 1.8", override: true},
+      {:ranch, "~> 2.0", override: true},
       {:meck, "~> 0.9", override: true},
       {:tesla, "~> 1.4"},
       {:poison, "~> 3.0"},
