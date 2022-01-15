@@ -85,7 +85,7 @@ defmodule Librecov.Mixfile do
       {:poison, "~> 3.0"},
       {:ex_octocat, github: "yknx4/ex_octocat", tag: "v1.1.4.1"},
       {:open_api_spex, "~> 3.10"},
-      {:ueberauth, "~> 0.6"},
+      {:ueberauth, "~> 0.7"},
       {:ueberauth_github,
        github: "ueberauth/ueberauth_github", ref: "0617af32b52b77e64f261da36b13b5c5d1616ab1"},
       {:ueberauth_identity, "~> 0.2"},
