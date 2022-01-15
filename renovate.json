@@ -6,5 +6,6 @@
     ":preserveSemverRanges",
     ":automergeMinor",
     ":dependencyDashboard"
-  ]
+  ],
+  "includeForks": true
 }
