@@ -11,7 +11,7 @@ jobs:
         otp: ["24.0"]
     steps:
       - name: Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.9.0
+        uses: styfle/cancel-workflow-action@0.9.1
         with:
           access_token: ${{ github.token }}
       - name: Checkout Github repo
@@ -52,7 +52,7 @@ jobs:
         otp: ["24.0"]
     steps:
       - name: Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.9.0
+        uses: styfle/cancel-workflow-action@0.9.1
         with:
           access_token: ${{ github.token }}
       - name: Checkout Github repo
@@ -97,7 +97,7 @@ jobs:
         uses: tj-actions/branch-names@v4.8
 
       - name: Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.9.0
+        uses: styfle/cancel-workflow-action@0.9.1
         with:
           access_token: ${{ github.token }}
       - name: Checkout Github repo
