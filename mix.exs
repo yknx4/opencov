@@ -95,7 +95,7 @@ defmodule Librecov.Mixfile do
       {:argon2_elixir, "~> 2.0"},
       {:ecto_resource, "~> 1.3"},
       {:floki, ">= 0.30.0", only: :test},
-      {:surface, "~> 0.5.0"},
+      {:surface, "~> 0.7.0"},
       {:kaffy, "~> 0.9.0"},
       {:ecto_factory, "~> 0.3.0"},
       {:shorter_maps, "~> 2.0"},
