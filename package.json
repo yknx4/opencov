@@ -37,7 +37,7 @@
     "prettier-config-standard": "^4.0.0",
     "sass": "^1.38.1",
     "standard": "^16.0.3",
-    "ts-standard": "^10.0.0"
+    "ts-standard": "^11.0.0"
   },
   "prettier": "prettier-config-standard",
   "dependencies": {
