@@ -5,7 +5,12 @@
     "packages:linters",
     ":preserveSemverRanges",
     ":automergeMinor",
-    ":dependencyDashboard"
+    ":dependencyDashboard",
+    ":semanticCommitType(build)",
+    ":semanticCommitScope(deps)",
+    ":prImmediately",
+    ":disableRateLimiting",
+    ":semanticCommits"
   ],
   "includeForks": true
 }
