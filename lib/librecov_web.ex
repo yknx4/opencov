@@ -111,6 +111,8 @@ defmodule Librecov.Web do
       alias Librecov.Router.Helpers, as: Routes
       alias Librecov.Authentication
       alias Librecov.Views.Helper, as: ViewHelper
+      alias Surface.LiveRedirect
+      alias Surface.Link
     end
   end
 

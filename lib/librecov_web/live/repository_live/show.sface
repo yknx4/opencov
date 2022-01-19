@@ -1,12 +1,12 @@
 
-<%= if @live_action in [:edit] do %>
-  <%= live_modal @socket, Librecov.RepositoryLive.FormComponent,
+{#if @live_action in [:edit] }
+  { live_modal @socket, Librecov.RepositoryLive.FormComponent,
     id: @repository.id,
     title: @page_title,
     action: @live_action,
     repository: @repository,
-    return_to: Routes.repository_show_path(@socket, :show, @repository) %>
-<% end %>
+    return_to: Routes.repository_show_path(Librecov.Endpoint, :show, @repository) }
+{/if}
 
 <div class="bg-image" id="repo-header">
   <div class="bg-primary-dark-op">
@@ -18,7 +18,7 @@
         </div>
         <div class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3">
           <span class="d-inline-block btn-group">
-            <%= if @repository.permissions.admin == true do %>
+            {#if @repository.permissions.admin == true }
             <div class="btn-group">
               <button class="btn btn-primary px-4 py-2 dropdown-toggle" type="button" id="dropdownMenuClickable" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
                 <i class="fas fa-key me-1 opacity-50"></i> Show Token
@@ -28,23 +28,23 @@
                 <li><pre><code><span class="dropdown-item">{ @project.token }</span></code></pre></li>
               </ul>
             </div>
-            <% end %>
+            {/if}
             <div class="btn-group">
               <button class="btn btn-primary px-4 py-2 dropdown-toggle" type="button" id="dropdownMenuClickable2" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
                 <i class="far fa-image me-1 opacity-50"></i> Get Badge
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickable2">
-                  <li><img class="dropdown-header" src={Routes.project_badge_path(@socket, :badge, @project, "svg") } /></li>
+                  <li><img class="dropdown-header" src={Routes.project_badge_path(Librecov.Endpoint, :badge, @project, "svg") } /></li>
                   <li><h6 class="dropdown-header">Markdown</h6></li>
                   <li><pre class="dropdown-item"><code class="language-markdown">
-                    [![Coverage Status](<%=Routes.project_badge_url(@socket, :badge, @project, "svg") %>)](<%=Routes.repository_show_url(@socket, :show, @repository.owner.login, @repository.name) %>)
+                    [![Coverage Status]({ Routes.project_badge_url(@socket, :badge, @project, "svg") })]({ Routes.repository_show_url(@socket, :show, @repository.owner.login, @repository.name) })
                   </code></pre></li>
               </ul>
             </div>
 
-            <%= link to: @repository.html_url, target: "_blank", class: "btn btn-primary px-4 py-2 js-click-ripple-enabled", style: "overflow: hidden; position: relative; z-index: 1;" do %>
+            <Link to={@repository.html_url} opts={target: "_blank", class: "btn btn-primary px-4 py-2 js-click-ripple-enabled", style: "overflow: hidden; position: relative; z-index: 1;"}>
               <i class="fab fa-github me-1 opacity-50"></i> Open
-            <% end %>
+            </Link>
           </span>
         </div>
       </div>
@@ -59,7 +59,7 @@
       <a class={"block block-rounded block-link-pop border-start border-4 border-#{ coverage_badge(@project.current_coverage) }"} href="javascript:void(0)">
         <div class="block-content block-content-full">
           <div class="fs-sm fw-semibold text-uppercase text-muted">Main Branch</div>
-          <div class="fs-2 fw-normal text-dark"><%= format_coverage(@project.current_coverage) %></div>
+          <div class="fs-2 fw-normal text-dark">{ format_coverage(@project.current_coverage) }</div>
         </div>
       </a>
     </div>
@@ -67,7 +67,7 @@
       <a class={"block block-rounded block-link-pop border-start border-4 border-#{ coverage_badge(@latest_build.coverage) }"} href="javascript:void(0)">
         <div class="block-content block-content-full">
           <div class="fs-sm fw-semibold text-uppercase text-muted">Latest Build</div>
-          <div class="fs-2 fw-normal text-dark"><%= format_coverage(@latest_build.coverage) %></div>
+          <div class="fs-2 fw-normal text-dark">{ format_coverage(@latest_build.coverage) }</div>
         </div>
       </a>
     </div>
@@ -90,7 +90,7 @@
   </div>
   <!-- END Stats -->
 
-<%= if false do %>
+{#if false }
 
   <!-- Dashboard Charts -->
   <div class="row">
@@ -136,7 +136,7 @@
     </div>
   </div>
   <!-- END Dashboard Charts -->
-<% end %>
+{/if}
 
   <!-- Customers and Latest Orders -->
   <div class="row row-deck">
@@ -162,8 +162,8 @@
             </thead>
             <tbody>
               {#for build <- @builds do}
-                <%= live_component Librecov.RepositoryLive.BuildRow, build: build %>
-              <% end %>
+                <Librecov.RepositoryLive.BuildRow build={build} />
+              {/for}
             </tbody>
           </table>
         </div>

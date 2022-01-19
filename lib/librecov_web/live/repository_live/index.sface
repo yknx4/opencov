@@ -1,19 +1,19 @@
 <div class="content" id="repositories-index">
-  <%= if @live_action in [:new, :edit] do %>
-    <%= live_modal @socket, Librecov.RepositoryLive.FormComponent,
+  {#if @live_action in [:new, :edit] do }
+    { live_modal @socket, Librecov.RepositoryLive.FormComponent,
       id: @repository.id || :new,
       title: @page_title,
       action: @live_action,
       repository: @repository,
-      return_to: Routes.repository_index_path(@socket, :index) %>
-  <% end %>
+      return_to: Routes.repository_index_path(Librecov.Endpoint, :index) }
+  {/if}
 
   <h2 class="content-heading">
     Repos
   </h2>
   <div class="row">
     {#for repository <- @repositories do}
-        <%= live_component Librecov.RepositoryLive.RepositoryCard, repository: repository, projects: @projects %>
+        { live_component Librecov.RepositoryLive.RepositoryCard, repository: repository, projects: @projects }
     {/for}
   </div>
 </div>

@@ -55,7 +55,6 @@ defmodule Librecov.Services.Github.Comments do
     conn = token |> Connection.new()
 
     {:ok, messages} =
-      existing_messages =
       conn |> Issues.issues_list_comments(owner, repo, issue_number, per_page: 100)
 
     existing_message =

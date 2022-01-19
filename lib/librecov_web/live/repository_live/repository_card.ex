@@ -44,7 +44,7 @@ defmodule Librecov.RepositoryLive.RepositoryCard do
               {#if !is_nil(project.id)}
                 <LiveRedirect
                   label={@repository.full_name}
-                  to={Routes.repository_show_path(@socket, :show, @repository.owner.login, @repository.name)}
+                  to={Routes.repository_show_path(Librecov.Endpoint, :show, @repository.owner.login, @repository.name)}
                 />
               {#else}
                 {@repository.full_name}
@@ -70,7 +70,7 @@ defmodule Librecov.RepositoryLive.RepositoryCard do
                 <LiveRedirect
                   class="text-muted"
                   label={latest_build.commit_message}
-                  to={Routes.build_show_path(@socket, :show, latest_build)}
+                  to={Routes.build_show_path(Librecov.Endpoint, :show, latest_build)}
                 />
                 {#if !is_nil(latest_build.branch)}
                   on branch <span class="font-italic">{latest_build.branch}</span>

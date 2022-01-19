@@ -13,7 +13,7 @@ defmodule Librecov.RepositoryLive.JobRow do
     <tr>
       <td class="text-center fs-sm">
         <span class="fw-semibold">
-          <LiveRedirect label={"##{@job.job_number}"} to={Routes.job_show_path(@socket, :show, @job)} />
+          <LiveRedirect label={"##{@job.job_number}"} to={Routes.job_show_path(Librecov.Endpoint, :show, @job)} />
         </span>
       </td>
       <td class="text-center fs-sm">

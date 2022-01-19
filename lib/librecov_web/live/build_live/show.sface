@@ -4,7 +4,7 @@
     <div class="col-lg-12 py-4">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><LiveRedirect label={@build.project.name} to={ViewHelper.project_path(@socket, :show, @build.project)} /></li>
+          <li class="breadcrumb-item"><LiveRedirect label={@build.project.name} to={ViewHelper.project_path(Librecov.Endpoint, :show, @build.project)} /></li>
           <li class="breadcrumb-item active" aria-current="page">Build #{ @build.build_number }</li>
         </ol>
       </nav>
@@ -12,7 +12,7 @@
     <div class="col-6 col-lg-3">
       <div class="block block-rounded block-link-shadow text-center">
       <div class="block-content block-content-full">
-        <div class="fs-2 fw-semibold text-primary"><%= format_coverage(@build.coverage) %></div>
+        <div class="fs-2 fw-semibold text-primary">{ format_coverage(@build.coverage) }</div>
       </div>
       <div class="block-content py-2 bg-body-light">
         <p class="fw-medium fs-sm text-muted mb-0">
@@ -24,7 +24,7 @@
     <div class="col-6 col-lg-3">
       <div class="block block-rounded block-link-shadow text-center">
       <div class="block-content block-content-full">
-        <div class="fs-2 fw-semibold text-dark"><%= human_time_ago(@build.inserted_at) %></div>
+        <div class="fs-2 fw-semibold text-dark">{ human_time_ago(@build.inserted_at) }</div>
       </div>
       <div class="block-content py-2 bg-body-light">
         <p class="fw-medium fs-sm text-muted mb-0">
@@ -37,7 +37,7 @@
       <div class="block block-rounded block-link-shadow text-center">
         <div class="block-content block-content-full">
           <div class="fs-2 fw-semibold text-dark">
-            <.live_component id={"latest-commit-#{@build.id}"} module={Commit} build={@build} />
+            <Commit build={@build} />
           </div>
         </div>
         <div class="block-content py-2 bg-body-light">
@@ -70,7 +70,7 @@
           </thead>
           <tbody>
               {#for job <- @build.jobs do}
-                <%= live_component Librecov.RepositoryLive.JobRow, job: job %>
+                <Librecov.RepositoryLive.JobRow job={job} />
             {/for}
 
           </tbody>
