@@ -2,10 +2,9 @@
   surface_line_length: 120,
   import_deps: [:ecto, :phoenix, :surface],
   inputs: [
-    "*.{ex,exs}",
+    "{mix,.formatter}.exs",
     "priv/*/seeds.exs",
-    "{config,lib,test}/**/*.{ex,exs}",
-    "lib/**/*.{ex,sface}"
+    "{config,lib,test}/**/*.{ex,exs,sface}"
   ],
   subdirectories: ["priv/*/migrations"],
   plugins: [Surface.Formatter.Plugin],
