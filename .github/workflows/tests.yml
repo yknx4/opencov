@@ -8,8 +8,8 @@ jobs:
       MIX_ENV: test
     strategy:
       matrix:
-        elixir: ["1.13.2"]
-        otp: ["24.0"]
+        elixir: ["1.13"]
+        otp: ["24.1"]
     steps:
       - name: Cancel previous runs
         uses: styfle/cancel-workflow-action@0.9.1
