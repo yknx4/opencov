@@ -15,8 +15,8 @@ defmodule Librecov.RepositoryLive.RepositoryCard do
     )
   end
 
-  prop projects, :list, required: true
-  prop repository, :struct, required: true
+  prop(projects, :list, required: true)
+  prop(repository, :struct, required: true)
 
   def render(assigns) do
     repo = assigns.repository
