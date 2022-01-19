@@ -42,7 +42,7 @@
               </ul>
             </div>
 
-            <Link to={@repository.html_url} opts={target: "_blank", class: "btn btn-primary px-4 py-2 js-click-ripple-enabled", style: "overflow: hidden; position: relative; z-index: 1;"}>
+            <Link to={@repository.html_url} class="btn btn-primary px-4 py-2 js-click-ripple-enabled" opts={target: "_blank", style: "overflow: hidden; position: relative; z-index: 1;"}>
               <i class="fab fa-github me-1 opacity-50"></i> Open
             </Link>
           </span>
