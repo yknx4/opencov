@@ -4,7 +4,8 @@
   inputs: [
     "{mix,.formatter}.exs",
     "priv/*/seeds.exs",
-    "{config,lib,test}/**/*.{ex,exs,sface}"
+    "{config,lib,test}/**/*.{ex,exs,sface}",
+    "lib/librecov_web/live/**/*.{ex,exs,sface}"
   ],
   subdirectories: ["priv/*/migrations"],
   plugins: [Surface.Formatter.Plugin],
