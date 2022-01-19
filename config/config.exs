@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 config :librecov, Librecov.Endpoint,
   url: [host: "localhost"],
@@ -90,7 +90,4 @@ config :kaffy,
   admin_logo: "/images/logo.png",
   admin_logo_mini: "/images/logo.png"
 
-import_config "#{Mix.env()}.exs"
-
-local_config_path = Path.expand("local.exs", __DIR__)
-if File.exists?(local_config_path), do: import_config(local_config_path)
+import_config "#{config_env()}.exs"

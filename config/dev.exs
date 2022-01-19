@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
@@ -81,3 +81,5 @@ config Librecov.Plug.Github,
   secret: "my-secret",
   path: "/api/v1/github_webhook",
   action: {Librecov.GithubService, :handle}
+
+config :phoenix, :plug_init_mode, :runtime

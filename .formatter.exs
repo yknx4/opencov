@@ -2,11 +2,11 @@
   surface_line_length: 120,
   import_deps: [:ecto, :phoenix, :surface],
   inputs: [
-    "*.{ex,exs}",
+    "{mix,.formatter}.exs",
     "priv/*/seeds.exs",
-    "{config,lib,test}/**/*.{ex,exs}"
+    "{config,lib,test}/**/*.{ex,exs,sface}",
+    "lib/librecov_web/live/**/*.{ex,exs,sface}"
   ],
-  surface_inputs: ["{lib,test}/**/*.{ex,exs,sface}"],
   subdirectories: ["priv/*/migrations"],
   plugins: [Surface.Formatter.Plugin],
   locals_without_parens: [

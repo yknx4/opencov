@@ -4,20 +4,27 @@
     <div class="col-lg-12 py-4">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><LiveRedirect label={@job.build.project.name} to={ViewHelper.project_path(Librecov.Endpoint, :show, @job.build.project)} /></li>
-          <li class="breadcrumb-item"><LiveRedirect label={"Build ##{@job.build.build_number}"} to={Routes.build_show_path(Librecov.Endpoint, :show, @job.build)} /></li>
-          <li class="breadcrumb-item active" aria-current="page">Job #{ @job.job_number }</li>
+          <li class="breadcrumb-item"><LiveRedirect
+              label={@job.build.project.name}
+              to={ViewHelper.project_path(Librecov.Endpoint, :show, @job.build.project)}
+            /></li>
+          <li class="breadcrumb-item"><LiveRedirect
+              label={"Build ##{@job.build.build_number}"}
+              to={Routes.build_show_path(Librecov.Endpoint, :show, @job.build)}
+            /></li>
+          <li class="breadcrumb-item active" aria-current="page">Job #{@job.job_number}</li>
         </ol>
       </nav>
     </div>
   </div>
   <!-- END Quick Overview -->
 
-  <Librecov.FileLive.List paginator={@paginator}
-           files={@files}
-           order={@order}
-           path_fn={&Librecov.Router.Helpers.job_show_path/4}
-           filters={@filters}
-           path_args={[@socket, :show, @job]} />
-
+  <Librecov.FileLive.List
+    paginator={@paginator}
+    files={@files}
+    order={@order}
+    path_fn={&Librecov.Router.Helpers.job_show_path/4}
+    filters={@filters}
+    path_args={[@socket, :show, @job]}
+  />
 </div>
