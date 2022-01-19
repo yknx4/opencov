@@ -64,12 +64,13 @@ defmodule Librecov.Web do
 
       # Include shared imports and aliases for views
       unquote(view_helpers())
+      import Surface
     end
   end
 
   def live_view do
     quote do
-      use Phoenix.LiveView,
+      use Surface.LiveView,
         layout: {Librecov.LayoutView, "live.html"}
 
       unquote(view_helpers())
@@ -78,7 +79,15 @@ defmodule Librecov.Web do
 
   def live_component do
     quote do
-      use Phoenix.LiveComponent
+      use Surface.LiveComponent
+
+      unquote(view_helpers())
+    end
+  end
+
+  def component do
+    quote do
+      use Surface.Component
 
       unquote(view_helpers())
     end
@@ -102,6 +111,8 @@ defmodule Librecov.Web do
       alias Librecov.Router.Helpers, as: Routes
       alias Librecov.Authentication
       alias Librecov.Views.Helper, as: ViewHelper
+      alias Surface.Components.LiveRedirect
+      alias Surface.Components.Link
     end
   end
 

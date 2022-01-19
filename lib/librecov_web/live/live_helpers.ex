@@ -13,7 +13,7 @@ defmodule Librecov.LiveHelpers do
         id: @repository.id || :new,
         action: @live_action,
         repository: @repository,
-        return_to: Routes.repository_index_path(@socket, :index) %>
+        return_to: Routes.repository_index_path(Librecov.Endpoint, :index) %>
   """
   def live_modal(_socket, component, opts) do
     path = Keyword.fetch!(opts, :return_to)

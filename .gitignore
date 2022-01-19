@@ -15,3 +15,6 @@ cover
 .elixir_ls
 
 /priv/static/assets/
+
+# Ignore generated js hook files for components
+assets/js/_hooks/

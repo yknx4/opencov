@@ -101,7 +101,7 @@ defmodule Librecov.FileLive.List do
                   </td>
 
                   <td class="text-center d-none d-xl-table-cell fs-sm">
-                    <Link class="fw-semibold" label={file.name} to={Routes.file_show_path(@socket, :show, file)} />
+                    <Link class="fw-semibold" label={file.name} to={Routes.file_show_path(Librecov.Endpoint, :show, file)} />
                   </td>
                 </tr>
               {/for}
@@ -113,7 +113,7 @@ defmodule Librecov.FileLive.List do
         <!-- Pagination -->
         <nav aria-label="Photos Search Navigation" :if={@paginator.total_pages > 1}>
           {pagination_links(
-            @socket,
+            Librecov.Endpoint,
             @paginator,
             Enum.drop(@path_args, 2),
             path: @path_fn,

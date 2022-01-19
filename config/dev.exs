@@ -31,6 +31,7 @@ config :librecov, Librecov.Endpoint,
 
 # Watch static and templates for browser reloading.
 config :librecov, Librecov.Endpoint,
+  reloadable_compilers: [:phoenix, :elixir, :surface],
   live_reload: [
     patterns: [
       ~r{assets/.*(scss,ts)$},
