@@ -4,8 +4,8 @@
     <div class="col-lg-12 py-4">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><%= live_redirect @build.project.name, to: ViewHelper.project_path(@socket, :show, @build.project) %></li>
-          <li class="breadcrumb-item active" aria-current="page">Build #<%= @build.build_number %></li>
+          <li class="breadcrumb-item"><LiveRedirect label={@build.project.name} to={ViewHelper.project_path(@socket, :show, @build.project)} /></li>
+          <li class="breadcrumb-item active" aria-current="page">Build #{ @build.build_number }</li>
         </ol>
       </nav>
     </div>
@@ -69,9 +69,9 @@
             </tr>
           </thead>
           <tbody>
-              <%= for job <- @build.jobs do %>
+              {#for job <- @build.jobs do}
                 <%= live_component Librecov.RepositoryLive.JobRow, job: job %>
-              <% end %>
+            {/for}
 
           </tbody>
         </table>

@@ -12,8 +12,8 @@
     Repos
   </h2>
   <div class="row">
-    <%= for repository <- @repositories do %>
+    {#for repository <- @repositories do}
         <%= live_component Librecov.RepositoryLive.RepositoryCard, repository: repository, projects: @projects %>
-    <% end %>
+    {/for}
   </div>
 </div>

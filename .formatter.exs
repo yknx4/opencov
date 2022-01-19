@@ -1,9 +1,15 @@
 [
   surface_line_length: 120,
   import_deps: [:ecto, :phoenix, :surface],
-  inputs: ["*.{ex,exs}", "priv/*/seeds.exs", "{config,lib,test}/**/*.{ex,exs}"],
+  inputs: [
+    "*.{ex,exs}",
+    "priv/*/seeds.exs",
+    "{config,lib,test}/**/*.{ex,exs}",
+    "{lib,test}/**/*.sface"
+  ],
   surface_inputs: ["{lib,test}/**/*.{ex,exs,sface}"],
   subdirectories: ["priv/*/migrations"],
+  plugins: [Surface.Formatter.Plugin],
   locals_without_parens: [
     # Formatter tests
     assert_format: 2,

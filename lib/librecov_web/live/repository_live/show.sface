@@ -13,7 +13,7 @@
     <div class="content content-full">
       <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mt-5 mb-2 text-center text-sm-start">
         <div class="flex-grow-1">
-          <h1 class="fw-semibold text-white mb-0"><%= @repository.full_name %></h1>
+          <h1 class="fw-semibold text-white mb-0">{ @repository.full_name }</h1>
           <h2 class="h4 fw-normal text-white-75 mb-0">Code Coverage Report</h2>
         </div>
         <div class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3">
@@ -25,7 +25,7 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickable">
                   <li><h6 class="dropdown-header">Token</h6></li>
-                <li><pre><code><span class="dropdown-item"><%= @project.token %></span></code></pre></li>
+                <li><pre><code><span class="dropdown-item">{ @project.token }</span></code></pre></li>
               </ul>
             </div>
             <% end %>
@@ -75,7 +75,7 @@
       <a class="block block-rounded block-link-pop border-start border-primary border-4" href="javascript:void(0)">
         <div class="block-content block-content-full">
           <div class="fs-sm fw-semibold text-uppercase text-muted">Main Branch Builds</div>
-          <div class="fs-2 fw-normal text-dark"><%= @total_builds_main %></div>
+          <div class="fs-2 fw-normal text-dark">{ @total_builds_main }</div>
         </div>
       </a>
     </div>
@@ -83,7 +83,7 @@
       <a class="block block-rounded block-link-pop border-start border-primary border-4" href="javascript:void(0)">
         <div class="block-content block-content-full">
           <div class="fs-sm fw-semibold text-uppercase text-muted">Total Builds</div>
-          <div class="fs-2 fw-normal text-dark"><%= @total_builds %></div>
+          <div class="fs-2 fw-normal text-dark">{ @total_builds }</div>
         </div>
       </a>
     </div>
@@ -161,7 +161,7 @@
               </tr>
             </thead>
             <tbody>
-              <%= for build <- @builds do %>
+              {#for build <- @builds do}
                 <%= live_component Librecov.RepositoryLive.BuildRow, build: build %>
               <% end %>
             </tbody>
