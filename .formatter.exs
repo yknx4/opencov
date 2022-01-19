@@ -4,9 +4,9 @@
   inputs: [
     "*.{ex,exs}",
     "priv/*/seeds.exs",
-    "{config,lib,test}/**/*.{ex,exs}"
+    "{config,lib,test}/**/*.{ex,exs}",
+    "lib/**/*.{ex,sface}"
   ],
-  surface_inputs: ["{lib,test}/**/*.{ex,exs,sface}"],
   subdirectories: ["priv/*/migrations"],
   plugins: [Surface.Formatter.Plugin],
   locals_without_parens: [

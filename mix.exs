@@ -105,7 +105,7 @@ defmodule Librecov.Mixfile do
       {:snapshy, "~> 0.2", only: :test},
       {:unsafe, "~> 1.0"},
       {:secure_random, "~> 0.5"},
-      {:surface_formatter, "~> 0.7.0"}
+      {:surface_formatter, "~> 0.7.0", only: :dev}
     ]
   end
 

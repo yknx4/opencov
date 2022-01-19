@@ -7,7 +7,7 @@ jobs:
       MIX_ENV: test
     strategy:
       matrix:
-        elixir: ["1.12.3"]
+        elixir: ["1.13.2"]
         otp: ["24.0"]
     steps:
       - name: Cancel previous runs
@@ -48,7 +48,7 @@ jobs:
       MIX_ENV: test
     strategy:
       matrix:
-        elixir: ["1.12.3"]
+        elixir: ["1.13.2"]
         otp: ["24.0"]
     steps:
       - name: Cancel previous runs
@@ -82,7 +82,7 @@ jobs:
       MIX_ENV: test
     strategy:
       matrix:
-        elixir: ["1.12.3"]
+        elixir: ["1.13.2"]
         otp: ["24.0"]
     services:
       db:

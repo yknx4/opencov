@@ -1,11 +1,11 @@
-
-{#if @live_action in [:edit] }
-  { live_modal @socket, Librecov.RepositoryLive.FormComponent,
+{#if @live_action in [:edit]}
+  {live_modal(@socket, Librecov.RepositoryLive.FormComponent,
     id: @repository.id,
     title: @page_title,
     action: @live_action,
     repository: @repository,
-    return_to: Routes.repository_show_path(Librecov.Endpoint, :show, @repository) }
+    return_to: Routes.repository_show_path(Librecov.Endpoint, :show, @repository)
+  )}
 {/if}
 
 <div class="bg-image" id="repo-header">
@@ -13,37 +13,55 @@
     <div class="content content-full">
       <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mt-5 mb-2 text-center text-sm-start">
         <div class="flex-grow-1">
-          <h1 class="fw-semibold text-white mb-0">{ @repository.full_name }</h1>
+          <h1 class="fw-semibold text-white mb-0">{@repository.full_name}</h1>
           <h2 class="h4 fw-normal text-white-75 mb-0">Code Coverage Report</h2>
         </div>
         <div class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3">
           <span class="d-inline-block btn-group">
-            {#if @repository.permissions.admin == true }
-            <div class="btn-group">
-              <button class="btn btn-primary px-4 py-2 dropdown-toggle" type="button" id="dropdownMenuClickable" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
-                <i class="fas fa-key me-1 opacity-50"></i> Show Token
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickable">
+            {#if @repository.permissions.admin == true}
+              <div class="btn-group">
+                <button
+                  class="btn btn-primary px-4 py-2 dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuClickable"
+                  data-bs-toggle="dropdown"
+                  data-bs-auto-close="false"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-key me-1 opacity-50" /> Show Token
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickable">
                   <li><h6 class="dropdown-header">Token</h6></li>
-                <li><pre><code><span class="dropdown-item">{ @project.token }</span></code></pre></li>
-              </ul>
-            </div>
+                  <li><pre><code><span class="dropdown-item">{@project.token}</span></code></pre></li>
+                </ul>
+              </div>
             {/if}
             <div class="btn-group">
-              <button class="btn btn-primary px-4 py-2 dropdown-toggle" type="button" id="dropdownMenuClickable2" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
-                <i class="far fa-image me-1 opacity-50"></i> Get Badge
+              <button
+                class="btn btn-primary px-4 py-2 dropdown-toggle"
+                type="button"
+                id="dropdownMenuClickable2"
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="false"
+                aria-expanded="false"
+              >
+                <i class="far fa-image me-1 opacity-50" /> Get Badge
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickable2">
-                  <li><img class="dropdown-header" src={Routes.project_badge_path(Librecov.Endpoint, :badge, @project, "svg") } /></li>
-                  <li><h6 class="dropdown-header">Markdown</h6></li>
-                  <li><pre class="dropdown-item"><code class="language-markdown">
-                    [![Coverage Status]({ Routes.project_badge_url(@socket, :badge, @project, "svg") })]({ Routes.repository_show_url(@socket, :show, @repository.owner.login, @repository.name) })
+                <li><img class="dropdown-header" src={Routes.project_badge_path(Librecov.Endpoint, :badge, @project, "svg")}></li>
+                <li><h6 class="dropdown-header">Markdown</h6></li>
+                <li><pre class="dropdown-item"><code class="language-markdown">
+                    [![Coverage Status]({Routes.project_badge_url(@socket, :badge, @project, "svg")})]({Routes.repository_show_url(@socket, :show, @repository.owner.login, @repository.name)})
                   </code></pre></li>
               </ul>
             </div>
 
-            <Link to={@repository.html_url} class="btn btn-primary px-4 py-2 js-click-ripple-enabled" opts={target: "_blank", style: "overflow: hidden; position: relative; z-index: 1;"}>
-              <i class="fab fa-github me-1 opacity-50"></i> Open
+            <Link
+              to={@repository.html_url}
+              class="btn btn-primary px-4 py-2 js-click-ripple-enabled"
+              opts={target: "_blank", style: "overflow: hidden; position: relative; z-index: 1;"}
+            >
+              <i class="fab fa-github me-1 opacity-50" /> Open
             </Link>
           </span>
         </div>
@@ -56,18 +74,24 @@
   <!-- Stats -->
   <div class="row">
     <div class="col-6 col-md-3 col-lg-6 col-xl-3">
-      <a class={"block block-rounded block-link-pop border-start border-4 border-#{ coverage_badge(@project.current_coverage) }"} href="javascript:void(0)">
+      <a
+        class={"block block-rounded block-link-pop border-start border-4 border-#{coverage_badge(@project.current_coverage)}"}
+        href="javascript:void(0)"
+      >
         <div class="block-content block-content-full">
           <div class="fs-sm fw-semibold text-uppercase text-muted">Main Branch</div>
-          <div class="fs-2 fw-normal text-dark">{ format_coverage(@project.current_coverage) }</div>
+          <div class="fs-2 fw-normal text-dark">{format_coverage(@project.current_coverage)}</div>
         </div>
       </a>
     </div>
     <div class="col-6 col-md-3 col-lg-6 col-xl-3">
-      <a class={"block block-rounded block-link-pop border-start border-4 border-#{ coverage_badge(@latest_build.coverage) }"} href="javascript:void(0)">
+      <a
+        class={"block block-rounded block-link-pop border-start border-4 border-#{coverage_badge(@latest_build.coverage)}"}
+        href="javascript:void(0)"
+      >
         <div class="block-content block-content-full">
           <div class="fs-sm fw-semibold text-uppercase text-muted">Latest Build</div>
-          <div class="fs-2 fw-normal text-dark">{ format_coverage(@latest_build.coverage) }</div>
+          <div class="fs-2 fw-normal text-dark">{format_coverage(@latest_build.coverage)}</div>
         </div>
       </a>
     </div>
@@ -75,7 +99,7 @@
       <a class="block block-rounded block-link-pop border-start border-primary border-4" href="javascript:void(0)">
         <div class="block-content block-content-full">
           <div class="fs-sm fw-semibold text-uppercase text-muted">Main Branch Builds</div>
-          <div class="fs-2 fw-normal text-dark">{ @total_builds_main }</div>
+          <div class="fs-2 fw-normal text-dark">{@total_builds_main}</div>
         </div>
       </a>
     </div>
@@ -83,60 +107,70 @@
       <a class="block block-rounded block-link-pop border-start border-primary border-4" href="javascript:void(0)">
         <div class="block-content block-content-full">
           <div class="fs-sm fw-semibold text-uppercase text-muted">Total Builds</div>
-          <div class="fs-2 fw-normal text-dark">{ @total_builds }</div>
+          <div class="fs-2 fw-normal text-dark">{@total_builds}</div>
         </div>
       </a>
     </div>
   </div>
   <!-- END Stats -->
 
-{#if false }
-
-  <!-- Dashboard Charts -->
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="block block-rounded block-mode-loading-oneui">
-        <div class="block-header block-header-default">
-          <h3 class="block-title">Coverage History (Coming Soon)</h3>
-          <div class="block-options">
-            <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-              <i class="si si-refresh"></i>
-            </button>
-            <button type="button" class="btn-block-option">
-              <i class="si si-settings"></i>
-            </button>
+  {#if false}
+    <!-- Dashboard Charts -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="block block-rounded block-mode-loading-oneui">
+          <div class="block-header block-header-default">
+            <h3 class="block-title">Coverage History (Coming Soon)</h3>
+            <div class="block-options">
+              <button
+                type="button"
+                class="btn-block-option"
+                data-toggle="block-option"
+                data-action="state_toggle"
+                data-action-mode="demo"
+              >
+                <i class="si si-refresh" />
+              </button>
+              <button type="button" class="btn-block-option">
+                <i class="si si-settings" />
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="block-content p-0 text-center">
-          <!-- Chart.js is initialized in js/pages/be_pages_dashboard_v1.min.js which was auto compiled from _js/pages/be_pages_dashboard_v1.js) -->
-          <!-- For more info and examples you can check out http://www.chartjs.org/docs/ -->
-          <div class="pt-3" style="height: 360px;"><canvas id="js-chartjs-dashboard-earnings" width="704" height="344" style="display: block; box-sizing: border-box; height: 344px; width: 704px;"></canvas></div>
-        </div>
-        <div class="block-content">
-          <div class="row items-push text-center py-3">
-            <div class="col-6 col-xl-3">
-              <i class="fa fa-wallet fa-2x text-muted"></i>
-              <div class="text-muted mt-3">$148,000</div>
-            </div>
-            <div class="col-6 col-xl-3">
-              <i class="fa fa-angle-double-up fa-2x text-muted"></i>
-              <div class="text-muted mt-3">+9% Earnings</div>
-            </div>
-            <div class="col-6 col-xl-3">
-              <i class="fa fa-ticket-alt fa-2x text-muted"></i>
-              <div class="text-muted mt-3">+20% Tickets</div>
-            </div>
-            <div class="col-6 col-xl-3">
-              <i class="fa fa-users fa-2x text-muted"></i>
-              <div class="text-muted mt-3">+46% Clients</div>
+          <div class="block-content p-0 text-center">
+            <!-- Chart.js is initialized in js/pages/be_pages_dashboard_v1.min.js which was auto compiled from _js/pages/be_pages_dashboard_v1.js) -->
+            <!-- For more info and examples you can check out http://www.chartjs.org/docs/ -->
+            <div class="pt-3" style="height: 360px;"><canvas
+                id="js-chartjs-dashboard-earnings"
+                width="704"
+                height="344"
+                style="display: block; box-sizing: border-box; height: 344px; width: 704px;"
+              /></div>
+          </div>
+          <div class="block-content">
+            <div class="row items-push text-center py-3">
+              <div class="col-6 col-xl-3">
+                <i class="fa fa-wallet fa-2x text-muted" />
+                <div class="text-muted mt-3">$148,000</div>
+              </div>
+              <div class="col-6 col-xl-3">
+                <i class="fa fa-angle-double-up fa-2x text-muted" />
+                <div class="text-muted mt-3">+9% Earnings</div>
+              </div>
+              <div class="col-6 col-xl-3">
+                <i class="fa fa-ticket-alt fa-2x text-muted" />
+                <div class="text-muted mt-3">+20% Tickets</div>
+              </div>
+              <div class="col-6 col-xl-3">
+                <i class="fa fa-users fa-2x text-muted" />
+                <div class="text-muted mt-3">+46% Clients</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- END Dashboard Charts -->
-{/if}
+    <!-- END Dashboard Charts -->
+  {/if}
 
   <!-- Customers and Latest Orders -->
   <div class="row row-deck">

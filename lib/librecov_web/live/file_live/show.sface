@@ -4,28 +4,34 @@
     <div class="col-lg-12 py-4">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><LiveRedirect label={@file.job.build.project.name} to={ViewHelper.project_path(Librecov.Endpoint, :show, @file.job.build.project)} /></li>
-          <li class="breadcrumb-item"><LiveRedirect label={"Build ##{@file.job.build.build_number}"} to={Routes.build_show_path(Librecov.Endpoint, :show, @file.job.build)} /></li>
+          <li class="breadcrumb-item"><LiveRedirect
+              label={@file.job.build.project.name}
+              to={ViewHelper.project_path(Librecov.Endpoint, :show, @file.job.build.project)}
+            /></li>
+          <li class="breadcrumb-item"><LiveRedirect
+              label={"Build ##{@file.job.build.build_number}"}
+              to={Routes.build_show_path(Librecov.Endpoint, :show, @file.job.build)}
+            /></li>
           <li class="breadcrumb-item"><LiveRedirect label={"Job ##{@file.job.job_number}"} to={Routes.job_show_path(Librecov.Endpoint, :show, @file.job)} /></li>
-          <li class="breadcrumb-item active" aria-current="page">{ @file.name }</li>
+          <li class="breadcrumb-item active" aria-current="page">{@file.name}</li>
         </ol>
       </nav>
     </div>
     <div class="col-md-12 col-xl-8">
       <div class="block block-rounded">
         <div class="block-header block-header-default">
-          <h3 class="block-title">Coverage <small>{ format_coverage(@file.coverage) }</small></h3>
+          <h3 class="block-title">Coverage <small>{format_coverage(@file.coverage)}</small></h3>
         </div>
         <div class="block-content">
           <table class="table table-borderless table-sm file-table bg-white">
             <tbody>
-            {#for {{line, coverage}, no} <- @content |> Enum.with_index() }
-              <tr class="p-0 m-0 ">
-                <td class="border-end text-muted text-center"><small>{ no+1 }</small></td>
-                <td class={class_for_coverage(coverage)}><pre class="m-0 p-0 overflow-hidden">{ raw line }</pre></td>
-                <td class="text-center border-start">{ raw content_for_coverage(coverage) }</td>
-              </tr>
-            {/for}
+              {#for {{line, coverage}, no} <- @content |> Enum.with_index()}
+                <tr class="p-0 m-0">
+                  <td class="border-end text-muted text-center"><small>{no + 1}</small></td>
+                  <td class={class_for_coverage(coverage)}><pre class="m-0 p-0 overflow-hidden">{raw(line)}</pre></td>
+                  <td class="text-center border-start">{raw(content_for_coverage(coverage))}</td>
+                </tr>
+              {/for}
             </tbody>
           </table>
         </div>

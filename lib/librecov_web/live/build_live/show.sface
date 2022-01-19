@@ -5,32 +5,32 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><LiveRedirect label={@build.project.name} to={ViewHelper.project_path(Librecov.Endpoint, :show, @build.project)} /></li>
-          <li class="breadcrumb-item active" aria-current="page">Build #{ @build.build_number }</li>
+          <li class="breadcrumb-item active" aria-current="page">Build #{@build.build_number}</li>
         </ol>
       </nav>
     </div>
     <div class="col-6 col-lg-3">
       <div class="block block-rounded block-link-shadow text-center">
-      <div class="block-content block-content-full">
-        <div class="fs-2 fw-semibold text-primary">{ format_coverage(@build.coverage) }</div>
-      </div>
-      <div class="block-content py-2 bg-body-light">
-        <p class="fw-medium fs-sm text-muted mb-0">
-          Coverage
-        </p>
-      </div>
+        <div class="block-content block-content-full">
+          <div class="fs-2 fw-semibold text-primary">{format_coverage(@build.coverage)}</div>
+        </div>
+        <div class="block-content py-2 bg-body-light">
+          <p class="fw-medium fs-sm text-muted mb-0">
+            Coverage
+          </p>
+        </div>
       </div>
     </div>
     <div class="col-6 col-lg-3">
       <div class="block block-rounded block-link-shadow text-center">
-      <div class="block-content block-content-full">
-        <div class="fs-2 fw-semibold text-dark">{ human_time_ago(@build.inserted_at) }</div>
-      </div>
-      <div class="block-content py-2 bg-body-light">
-        <p class="fw-medium fs-sm text-muted mb-0">
-          Latest Change
-        </p>
-      </div>
+        <div class="block-content block-content-full">
+          <div class="fs-2 fw-semibold text-dark">{human_time_ago(@build.inserted_at)}</div>
+        </div>
+        <div class="block-content py-2 bg-body-light">
+          <p class="fw-medium fs-sm text-muted mb-0">
+            Latest Change
+          </p>
+        </div>
       </div>
     </div>
     <div class="col-6">
@@ -69,15 +69,13 @@
             </tr>
           </thead>
           <tbody>
-              {#for job <- @build.jobs }
-                <Librecov.RepositoryLive.JobRow job={job} />
+            {#for job <- @build.jobs}
+              <Librecov.RepositoryLive.JobRow job={job} />
             {/for}
-
           </tbody>
         </table>
       </div>
       <!-- END All Orders Table -->
-
     </div>
   </div>
   <!-- END All Orders -->

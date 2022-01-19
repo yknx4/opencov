@@ -10,16 +10,21 @@
 #   - https://hub.docker.com/r/hexpm/elixir/tags - for the build image
 #   - https://hub.docker.com/_/debian?tab=tags&page=1&name=bullseye-20210902-slim - for the release image
 #   - https://pkgs.org/ - resource for finding needed packages
-#   - Ex: hexpm/elixir:1.12.3-erlang-24.1.1-debian-bullseye-20210902-slim
+#   - Ex: hexpm/elixir:1.13.2-erlang-24.1.1-debian-bullseye-20210902-slim
 #
-ARG BUILDER_IMAGE="hexpm/elixir:1.12.3-erlang-24.1.1-debian-bullseye-20210902-slim"
+ARG BUILDER_IMAGE="hexpm/elixir:1.13.2-erlang-24.1.1-debian-bullseye-20210902-slim"
 ARG RUNNER_IMAGE="debian:bullseye-20210902-slim"
 
 FROM ${BUILDER_IMAGE} as builder
 
 # install build dependencies
-RUN apt-get update -y && apt-get install -y build-essential git \
+RUN apt-get update -y && apt-get install -y build-essential git apt-transport-https curl \
     && apt-get clean && rm -f /var/lib/apt/lists/*_*
+
+# add node deb
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x -o /tmp/setup_node.sh && bash /tmp/setup_node.sh && apt-get install -y nodejs \
+    && apt-get clean && rm -f /var/lib/apt/lists/*_* \
+    && corepack enable
 
 # prepare build dir
 WORKDIR /app
@@ -49,12 +54,12 @@ COPY priv priv
 # your Elixir templates, you will need to move the asset compilation
 # step down so that `lib` is available.
 COPY assets assets
-
+ADD openapi.json package.json yarn.lock ./
 # compile assets
-RUN mix assets.deploy
-
-# Compile the release
+RUN yarn install --frozen-lockfile
 COPY lib lib
+RUN mix assets.deploy
+# Compile the release
 
 RUN mix compile
 
@@ -68,8 +73,13 @@ RUN mix release
 # the compiled release and other runtime necessities
 FROM ${RUNNER_IMAGE}
 
-RUN apt-get update -y && apt-get install -y libstdc++6 openssl libncurses5 locales \
+RUN apt-get update -y && apt-get install -y libstdc++6 openssl libncurses5 locales apt-transport-https curl \
   && apt-get clean && rm -f /var/lib/apt/lists/*_*
+
+# add node deb
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x -o /tmp/setup_node.sh && bash /tmp/setup_node.sh && apt-get install -y nodejs --no-install-recommends \
+    && apt-get clean && rm -f /var/lib/apt/lists/*_* \
+    && corepack enable
 
 # Set the locale
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
@@ -83,6 +93,8 @@ RUN chown nobody /app
 
 # Only copy the final release from the build stage
 COPY --from=builder --chown=nobody:root /app/_build/prod/rel/librecov ./
+ADD openapi.json package.json yarn.lock /app/bin/
+RUN cd bin && yarn install --production --frozen-lockfile
 
 USER nobody
 
