@@ -72,6 +72,9 @@ defmodule Librecov.Web do
       use Phoenix.LiveView,
         layout: {Librecov.LayoutView, "live.html"}
 
+      import Phoenix.LiveView.Helpers
+      import Librecov.LiveHelpers
+
       unquote(view_helpers())
     end
   end

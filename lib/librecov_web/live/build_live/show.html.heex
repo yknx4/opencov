@@ -37,7 +37,7 @@
       <div class="block block-rounded block-link-shadow text-center">
         <div class="block-content block-content-full">
           <div class="fs-2 fw-semibold text-dark">
-            <%= live_component Commit, build: @build %>
+            <.live_component id={"latest-commit-#{@build.id}"} module={Commit} build={@build} />
           </div>
         </div>
         <div class="block-content py-2 bg-body-light">
