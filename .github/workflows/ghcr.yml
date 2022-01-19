@@ -1,8 +1,14 @@
-name: CI to GHCR 
+name: Docker
 
 on:
+  pull_request:
   push:
-    branches: [ main ]
+    branches:
+      - main
+    tags:
+      - v*
+  release:
+    types: [released]
 
 env:
   REGISTRY: ghcr.io
@@ -10,6 +16,7 @@ env:
 
 jobs:
   build-and-push-image:
+    name: Build
     runs-on: ubuntu-latest
     permissions:
       contents: read
