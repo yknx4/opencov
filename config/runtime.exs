@@ -41,6 +41,18 @@ if config_env() == :prod do
 
   host = System.get_env("PHX_HOST") || "example.com"
   port = String.to_integer(System.get_env("PORT") || "4000")
+  ssl_port = String.to_integer(System.get_env("SSL_PORT") || "8443")
+
+  if System.get_env("SSL_KEY") && System.get_env("SSL_CERT") do
+    config :librecov, LibrecovWeb.Endpoint,
+      https: [
+        ip: {0, 0, 0, 0, 0, 0, 0, 0},
+        compress: true,
+        port: ssl_port,
+        key: {:RSAPrivateKey, System.get_env("SSL_KEY") |> Base.decode64!()},
+        cert: {:RSAPrivateKey, System.get_env("SSL_CERT") |> Base.decode64!()}
+      ]
+  end
 
   config :librecov, LibrecovWeb.Endpoint,
     url: [
