@@ -19,7 +19,7 @@
         <div class="block-content">
           <table class="table table-borderless table-sm file-table bg-white">
             <tbody>
-            {#for {{line, coverage}, no} <- @content |> Enum.with_index() do}
+            {#for {{line, coverage}, no} <- @content |> Enum.with_index() }
               <tr class="p-0 m-0 ">
                 <td class="border-end text-muted text-center"><small>{ no+1 }</small></td>
                 <td class={class_for_coverage(coverage)}><pre class="m-0 p-0 overflow-hidden">{ raw line }</pre></td>

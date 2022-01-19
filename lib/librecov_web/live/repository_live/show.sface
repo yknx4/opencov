@@ -161,7 +161,7 @@
               </tr>
             </thead>
             <tbody>
-              {#for build <- @builds do}
+              {#for build <- @builds}
                 <Librecov.RepositoryLive.BuildRow build={build} />
               {/for}
             </tbody>

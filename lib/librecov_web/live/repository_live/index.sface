@@ -1,5 +1,5 @@
 <div class="content" id="repositories-index">
-  {#if @live_action in [:new, :edit] do }
+  {#if @live_action in [:new, :edit] }
     { live_modal @socket, Librecov.RepositoryLive.FormComponent,
       id: @repository.id || :new,
       title: @page_title,
@@ -12,8 +12,8 @@
     Repos
   </h2>
   <div class="row">
-    {#for repository <- @repositories do}
-        { live_component Librecov.RepositoryLive.RepositoryCard, repository: repository, projects: @projects }
+    {#for repository <- @repositories }
+        <Librecov.RepositoryLive.RepositoryCard repository={repository} projects={@projects} />
     {/for}
   </div>
 </div>

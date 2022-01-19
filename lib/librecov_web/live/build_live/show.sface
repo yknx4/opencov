@@ -69,7 +69,7 @@
             </tr>
           </thead>
           <tbody>
-              {#for job <- @build.jobs do}
+              {#for job <- @build.jobs }
                 <Librecov.RepositoryLive.JobRow job={job} />
             {/for}
 
