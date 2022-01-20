@@ -114,7 +114,7 @@ defmodule Librecov.Mixfile do
       "ecto.setup": ["ecto.create", "ecto.migrate"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       "assets.deploy": [
-        "cmd --cd assets ts-node build.ts",
+        "cmd --cd assets ../node_modules/.bin/ts-node build.ts",
         "phx.digest"
       ],
       sentry_recompile: ["compile", "deps.compile sentry --force"]
