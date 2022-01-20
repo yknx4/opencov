@@ -39,7 +39,8 @@ defmodule Librecov.Endpoint do
   plug(Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Jason
+    json_decoder: Jason,
+    length: 100_000_000
   )
 
   plug(Sentry.PlugContext)

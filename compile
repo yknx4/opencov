@@ -1,6 +1,5 @@
-node_modules/.bin/postcss --verbose --ext=css -m --dir=./priv/static/assets ./assets/css
 cd assets
-node build.ts
+../node_modules/.bin/ts-node build.ts
 cd ../
 mix phx.digest
 mix sentry_recompile
