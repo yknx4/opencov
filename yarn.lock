@@ -882,15 +882,13 @@ esbuild-openbsd-64@0.14.11:
   resolved "https://registry.yarnpkg.com/esbuild-openbsd-64/-/esbuild-openbsd-64-0.14.11.tgz#caeff5f946f79a60ce7bcf88871ca4c71d3476e8"
   integrity sha512-l18TZDjmvwW6cDeR4fmizNoxndyDHamGOOAenwI4SOJbzlJmwfr0jUgjbaXCUuYVOA964siw+Ix+A+bhALWg8Q==
 
-esbuild-sass-plugin@^1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/esbuild-sass-plugin/-/esbuild-sass-plugin-1.5.2.tgz#57dbc94bc6b20531bb7143ecb2f69ea8d2fa8dcd"
-  integrity sha512-u8K9F3MMz9L+MNtvMvKx8BiBNjc+7XjDXT2bGaEpyrqPVaR0B7zrMCeYPPAE37KGffntM9Wji2YyGAQOI9L4kA==
+esbuild-sass-plugin@^2.0.0:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/esbuild-sass-plugin/-/esbuild-sass-plugin-2.0.3.tgz#f472627fdd6fc5834333ed6e1b8c5604b31adb72"
+  integrity sha512-rQzJRaSgcU1oQlJ1Crbr3SuNYTomc0dE0Pc8qS/T8dWLBxnd5xp/5wQvOOEY3lXmPy8lToZnPqGd1TtfuKc+Cg==
   dependencies:
-    esbuild "^0.12.20"
-    picomatch "^2.3.0"
-    resolve "^1.20.0"
-    sass "^1.37.5"
+    esbuild "^0.14.8"
+    sass "^1.45.1"
 
 esbuild-sunos-64@0.14.11:
   version "0.14.11"
@@ -912,12 +910,7 @@ esbuild-windows-arm64@0.14.11:
   resolved "https://registry.yarnpkg.com/esbuild-windows-arm64/-/esbuild-windows-arm64-0.14.11.tgz#e8edfdf1d712085e6dc3fba18a0c225aaae32b75"
   integrity sha512-dZp7Krv13KpwKklt9/1vBFBMqxEQIO6ri7Azf8C+ob4zOegpJmha2XY9VVWP/OyQ0OWk6cEeIzMJwInRZrzBUQ==
 
-esbuild@^0.12.20:
-  version "0.12.24"
-  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.12.24.tgz#21966fad25a80f368ed308101e88102bce0dc68f"
-  integrity sha512-C0ibY+HsXzYB6L/pLWEiWjMpghKsIc58Q5yumARwBQsHl9DXPakW+5NI/Y9w4YXiz0PEP6XTGTT/OV4Nnsmb4A==
-
-esbuild@^0.14.0:
+esbuild@^0.14.0, esbuild@^0.14.8:
   version "0.14.11"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.14.11.tgz#ac4acb78907874832afb704c3afe58ad37715c27"
   integrity sha512-xZvPtVj6yecnDeFb3KjjCM6i7B5TCAQZT77kkW/CpXTMnd6VLnRPKrUB1XHI1pSq6a4Zcy3BGueQ8VljqjDGCg==
@@ -1534,6 +1527,11 @@ ignore@^5.1.8, ignore@^5.2.0:
 image-size@~0.5.0:
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
+
+immutable@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0.tgz#b86f78de6adef3608395efb269a91462797e2c23"
+  integrity sha512-zIE9hX70qew5qTUjSS7wi1iwj/l7+m54KWU247nhM3v806UdGj1yDndXj+IOYxxtW9zyLI+xqFNZjTuDaLUqFw==
 
 import-fresh@^3.0.0, import-fresh@^3.2.1:
   version "3.3.0"
@@ -2195,7 +2193,7 @@ phoenix_live_view@^0.17.1:
   resolved "https://registry.yarnpkg.com/phoenix_live_view/-/phoenix_live_view-0.17.5.tgz#a1ade60693a44d9df5d39eaad71483f8a8a28a91"
   integrity sha512-5KkaL/qfeQN4Ti8Hv81Z2hdaO1040Erumj4I1H5ADRDI4eRirgvFWlFgjhd43WcWVlAsOHRB/g/5PimvEc3gTA==
 
-picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.3, picomatch@^2.3.0:
+picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.3:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.0.tgz#f1f061de8f6a4bf022892e2d128234fb98302972"
   integrity sha512-lY1Q/PiJGC2zOv/z391WOTD+Z02bCgsFfvxoXXf6h7kv9o+WmsmzYqrAwY63sNgOxE4xEdq0WyUnXfKeBrSvYw==
@@ -2343,19 +2341,21 @@ rxjs@^6.4.0, rxjs@^6.6.7:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-sass@^1.37.5:
-  version "1.38.2"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.38.2.tgz#970045d9966180002a8c8f3820fc114cddb42822"
-  integrity sha512-Bz1fG6qiyF0FX6m/I+VxtdVKz1Dfmg/e9kfDy2PhWOkq3T384q2KxwIfP0fXpeI+EyyETdOauH+cRHQDFASllA==
-  dependencies:
-    chokidar ">=3.0.0 <4.0.0"
-
 sass@^1.38.1:
   version "1.38.1"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.38.1.tgz#54dfb17fb168846b5850324b82fc62dc68f51bad"
   integrity sha512-Lj8nPaSYOuRhgqdyShV50fY5jKnvaRmikUNalMPmbH+tKMGgEKVkltI/lP30PEfO2T1t6R9yc2QIBLgOc3uaFw==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
+
+sass@^1.45.1:
+  version "1.49.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.49.0.tgz#65ec1b1d9a6bc1bae8d2c9d4b392c13f5d32c078"
+  integrity sha512-TVwVdNDj6p6b4QymJtNtRS2YtLJ/CqZriGg0eIAbAKMlN8Xy6kbv33FsEZSF7FufFFM705SQviHjjThfaQ4VNw==
+  dependencies:
+    chokidar ">=3.0.0 <4.0.0"
+    immutable "^4.0.0"
+    source-map-js ">=0.6.2 <2.0.0"
 
 sax@^1.2.4:
   version "1.2.4"
@@ -2431,6 +2431,11 @@ slice-ansi@^4.0.0:
     ansi-styles "^4.0.0"
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
+
+"source-map-js@>=0.6.2 <2.0.0":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
+  integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
 
 source-map@~0.6.0:
   version "0.6.1"
