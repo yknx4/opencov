@@ -1,15 +1,18 @@
-import esbuild from 'esbuild'
-import { sassPlugin } from 'esbuild-sass-plugin'
-import path from 'path'
+/* eslint-disable @typescript-eslint/no-var-requires */
+import type { PluginBuild, Plugin, LogLevel } from 'esbuild'
+
+const esbuild = require('esbuild') as PluginBuild['esbuild']
+const { sassPlugin } = require('esbuild-sass-plugin')
+const path = require('path')
 
 const bundle = true
-const logLevel = (process.env.ESBUILD_LOG_LEVEL ?? 'silent') as esbuild.LogLevel
+const logLevel = (process.env.ESBUILD_LOG_LEVEL ?? 'silent') as LogLevel
 const watch = typeof process.env.ESBUILD_WATCH === 'string'
 
-const plugins: esbuild.Plugin[] = [
+const plugins: Plugin[] = [
   sassPlugin({
     includePaths: [path.resolve(__dirname, 'node_modules')]
-  }) as unknown as esbuild.Plugin
+  }) as unknown as Plugin
 ]
 
 const promise = esbuild.build({
