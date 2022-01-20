@@ -1,15 +1,15 @@
-const esbuild = require('esbuild')
-const { sassPlugin } = require('esbuild-sass-plugin')
-const path = require('path')
+import esbuild from 'esbuild'
+import { sassPlugin } from 'esbuild-sass-plugin'
+import path from 'path'
 
 const bundle = true
-const logLevel = process.env.ESBUILD_LOG_LEVEL || 'silent'
-const watch = !!process.env.ESBUILD_WATCH
+const logLevel = (process.env.ESBUILD_LOG_LEVEL ?? 'silent') as esbuild.LogLevel
+const watch = typeof process.env.ESBUILD_WATCH === 'string'
 
-const plugins = [
+const plugins: esbuild.Plugin[] = [
   sassPlugin({
     includePaths: [path.resolve(__dirname, 'node_modules')]
-  })
+  }) as unknown as esbuild.Plugin
 ]
 
 const promise = esbuild.build({
@@ -30,13 +30,18 @@ const promise = esbuild.build({
 })
 
 if (watch) {
-  promise.then((_result) => {
-    process.stdin.on('close', () => {
-      process.exit(0)
-    })
+  promise
+    .then((_result) => {
+      process.stdin.on('close', () => {
+        process.exit(0)
+      })
 
-    process.stdin.resume()
-  })
+      process.stdin.resume()
+    })
+    .catch((e) => {
+      console.error(e)
+      process.exit(1)
+    })
 } else {
   promise.catch((e) => {
     console.error(e)

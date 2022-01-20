@@ -47,5 +47,9 @@ liveSocket.connect()
 // >> liveSocket.enableDebug()
 // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
 // >> liveSocket.disableLatencySim()
-// @ts-expect-error
+declare global {
+  interface Window {
+    liveSocket: LiveSocket
+  }
+}
 window.liveSocket = liveSocket
