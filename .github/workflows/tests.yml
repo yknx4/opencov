@@ -22,7 +22,7 @@ jobs:
           yarn install --frozen-lockfile
 
   linters:
-    needs: dependencies
+    needs: assets_dependencies
     runs-on: ubuntu-latest
     steps:
       - name: Cancel previous runs
