@@ -2,6 +2,45 @@ name: Tests
 on: push
 
 jobs:
+  assets_dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+      - name: Checkout Github repo
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        id: node-install
+        with:
+          node-version: lts/*
+          cache: yarn
+      - name: Install dependencies
+        if: steps.node-install.outputs.cache-hit != 'true'
+        run: |
+          yarn install --frozen-lockfile
+
+  linters:
+    needs: assets_dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+      - name: Checkout Github repo
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        id: node-install
+        with:
+          node-version: lts/*
+          cache: yarn
+      - name: Install dependencies
+        run: |
+          yarn install --frozen-lockfile
+      - run: yarn eslint .
+
   dependencies:
     runs-on: ubuntu-latest
     env:

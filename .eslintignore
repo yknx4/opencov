@@ -1,0 +1,5 @@
+priv/**/*
+deps/**/*
+assets/vendor/**/*
+_build/**/*
+code.js
