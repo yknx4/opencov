@@ -102,7 +102,7 @@ defmodule Librecov.Mixfile do
       {:mix_test_interactive, "~> 1.0", only: :dev, runtime: false},
       {:exvcr, "~> 0.13", only: :test},
       {:ibrowse, "~> 4.2", only: :test},
-      {:snapshy, "~> 0.2", only: :test},
+      {:snapshy, "~> 0.3", only: :test},
       {:unsafe, "~> 1.0"},
       {:secure_random, "~> 0.5"},
       {:surface_formatter, "~> 0.7.0", only: :dev}
