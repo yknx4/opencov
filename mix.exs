@@ -74,7 +74,7 @@ defmodule Librecov.Mixfile do
       {:ecto_sql, "~> 3.7"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_live_view, "~> 0.17.0"},
-      {:phoenix_live_dashboard, "~> 0.6"},
+      {:phoenix_live_dashboard, "~> 0.8"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 0.5"},
