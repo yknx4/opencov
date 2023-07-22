@@ -27,7 +27,7 @@
     "esbuild-sass-plugin": "^2.0.0",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-config-standard-with-typescript": "^21.0.1",
+    "eslint-config-standard-with-typescript": "^37.0.0",
     "eslint-formatter-rdjson": "^1.0.5",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
