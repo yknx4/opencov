@@ -10,7 +10,7 @@ jobs:
         with:
           access_token: ${{ github.token }}
       - name: Checkout Github repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - uses: actions/setup-node@v2
         id: node-install
         with:
@@ -30,7 +30,7 @@ jobs:
         with:
           access_token: ${{ github.token }}
       - name: Checkout Github repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - uses: actions/setup-node@v2
         id: node-install
         with:
@@ -55,7 +55,7 @@ jobs:
         with:
           access_token: ${{ github.token }}
       - name: Checkout Github repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Sets up an Erlang/OTP environment
         uses: erlef/setup-beam@v1
         id: beam
@@ -97,7 +97,7 @@ jobs:
         with:
           access_token: ${{ github.token }}
       - name: Checkout Github repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Sets up an Erlang/OTP environment
         uses: erlef/setup-beam@v1
         id: beam
@@ -143,7 +143,7 @@ jobs:
         with:
           access_token: ${{ github.token }}
       - name: Checkout Github repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Use Node.js 14
         uses: actions/setup-node@v2
