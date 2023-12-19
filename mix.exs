@@ -69,7 +69,7 @@ defmodule Librecov.Mixfile do
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:jason, "~> 1.0"},
       {:phoenix, "~> 1.6.0-rc.0", override: true},
-      {:phoenix_html, "~> 3.0", override: true},
+      {:phoenix_html, "~> 4.0", override: true},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.7"},
       {:postgrex, ">= 0.0.0"},
