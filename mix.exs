@@ -48,7 +48,7 @@ defmodule Librecov.Mixfile do
       {:elixir_uuid, "~> 1.2"},
       {:event_bus,
        github: "yknx4/event_bus", ref: "49027b459afc325ebf71a1e5001fb8718b4e7d80", override: true},
-      {:mutex, "~> 1.3"},
+      {:mutex, "~> 2.0"},
       {:deep_merge, "~> 1.0"},
       {:sentry, "~> 8.0"},
       {:plug_cloudflare, "~> 1.3"},
