@@ -171,7 +171,7 @@ jobs:
         run: |
           MIX_ENV=test mix ecto.setup
       - run: mix coveralls.json --trace --slowest 10
-      - uses: codecov/codecov-action@v2
+      - uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
           files: cover/excoveralls.json
