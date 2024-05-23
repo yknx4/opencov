@@ -41,7 +41,7 @@ defmodule Librecov.Mixfile do
 
   defp deps do
     [
-      {:nodejs, "~> 2.0"},
+      {:nodejs, "~> 3.0"},
       {:oauth2, "~> 2.0"},
       {:sobelow, "~> 0.11", only: :dev},
       {:event_bus_logger, "~> 0.1.6"},
