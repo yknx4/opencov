@@ -82,7 +82,7 @@ defmodule Librecov.Mixfile do
       {:ranch, "~> 2.0", override: true},
       {:meck, "~> 0.9", override: true},
       {:tesla, "~> 1.4"},
-      {:poison, "~> 3.0"},
+      {:poison, "~> 6.0"},
       {:ex_octocat, github: "yknx4/ex_octocat", tag: "v1.1.4.1"},
       {:open_api_spex, "~> 3.10"},
       {:ueberauth, "~> 0.7"},
