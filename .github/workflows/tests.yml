@@ -136,7 +136,7 @@ jobs:
     steps:
       - name: Get branch name
         id: branch-name
-        uses: tj-actions/branch-names@v5.1
+        uses: tj-actions/branch-names@v6.5
 
       - name: Cancel previous runs
         uses: styfle/cancel-workflow-action@0.9.1
