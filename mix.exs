@@ -54,7 +54,7 @@ defmodule Librecov.Mixfile do
       {:plug_cloudflare, "~> 1.3"},
       {:joken, "~> 2.4"},
       {:stream_gzip, "~> 0.4"},
-      {:gettext, "~> 0.19"},
+      {:gettext, "~> 0.26"},
       {:temp, "~> 0.4"},
       {:timex, "~> 3.7"},
       {:scrivener_ecto, "~> 2.7"},
