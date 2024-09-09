@@ -57,7 +57,7 @@ defmodule Librecov.Mixfile do
       {:gettext, "~> 0.19"},
       {:temp, "~> 0.4"},
       {:timex, "~> 3.7"},
-      {:scrivener_ecto, "~> 2.7"},
+      {:scrivener_ecto, "~> 3.0"},
       {:navigation_history, "~> 0.4"},
       {:ex_machina, "~> 2.7"},
       {:mailman, "~> 0.4"},
