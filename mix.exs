@@ -99,7 +99,7 @@ defmodule Librecov.Mixfile do
       {:kaffy, "~> 0.9.0"},
       {:ecto_factory, "~> 0.3.0"},
       {:shorter_maps, "~> 2.0"},
-      {:mix_test_interactive, "~> 1.0", only: :dev, runtime: false},
+      {:mix_test_interactive, "~> 4.0", only: :dev, runtime: false},
       {:exvcr, "~> 0.13", only: :test},
       {:ibrowse, "~> 4.2", only: :test},
       {:snapshy, "~> 0.2", only: :test},
