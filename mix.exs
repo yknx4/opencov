@@ -80,7 +80,7 @@ defmodule Librecov.Mixfile do
       {:telemetry_poller, "~> 0.5"},
       {:plug_cowboy, "~> 2.5"},
       {:ranch, "~> 2.0", override: true},
-      {:meck, "~> 0.9", override: true},
+      {:meck, "~> 1.0", override: true},
       {:tesla, "~> 1.4"},
       {:poison, "~> 3.0"},
       {:ex_octocat, github: "yknx4/ex_octocat", tag: "v1.1.4.1"},
